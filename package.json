@@ -2,7 +2,7 @@
   "name": "frontend-starterpack-calebashw",
   "version": "1.0.0",
   "description": "*description*",
-  "main": "src/index.js",
+  "main": "src/index.jsx",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -23,7 +23,9 @@
     "vite-plugin-eslint": "^1.8.1"
   },
   "dependencies": {
+    "@mui/material": "^5.15.20",
     "@vitejs/plugin-react": "^4.2.1",
+    "antd": "^5.18.1",
     "axios": "^1.6.8",
     "immer": "^10.0.4",
     "jquery": "^3.7.1",
