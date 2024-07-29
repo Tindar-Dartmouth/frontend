@@ -18,7 +18,7 @@ function Login() {
     try {
     //   await login(form);
       console.log('logging in');
-      navigate('/home'); // Updated navigation
+      navigate('/recruiting'); // Updated navigation
     } catch {
       console.log('failed log in');
       setError('Invalid email or password');

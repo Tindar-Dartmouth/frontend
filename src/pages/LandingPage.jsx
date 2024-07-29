@@ -19,7 +19,7 @@ function LandingPage() {
   return (
     <div className="landing-page-container">
       <div className="landing-page-header">
-        <h1>Welcome to LikedIn</h1>
+        <h1>Welcome to Tindar</h1>
       </div>
       <div className="register-login-buttons">
         <Flex gap="large" wrap>

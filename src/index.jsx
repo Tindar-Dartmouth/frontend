@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.scss';
 import {
@@ -6,8 +6,11 @@ import {
 } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
-
-const LandingPage = lazy(() => import('./pages/LandingPage'));
+import UserQuestions from './pages/UserQuestions';
+import Recruiting from './pages/Recruiting';
+import LandingPage from './pages/LandingPage';
+import Endorsements from './pages/Endorsements';
+import UserProfile from './pages/UserProfile';
 
 function Layout() {
   return (
@@ -44,6 +47,10 @@ const router = createBrowserRouter([
       { index: true, element: <LandingPage /> },
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Register /> },
+      { path: 'user-questionnaire', element: <UserQuestions /> },
+      { path: 'recruiting', element: <Recruiting /> },
+      { path: 'endorsements', element: <Endorsements /> },
+      { path: 'profile', element: <UserProfile /> },
       // { path: 'landing-page', element: <Suspense fallback={<div>Loading...</div>}><LandingPage /></Suspense> },
       { path: 'about', element: <About /> },
       { path: 'test/:id', element: <Test /> },

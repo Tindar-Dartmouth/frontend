@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { register } from '../services/authService';
+import { Form, Input, Button } from 'antd';
 import '../style/RegisterStyle.css';
 
 function Register() {
-  const [form, setForm] = useState({
-    name: '', email: '', password: '', role: '',
-  });
+  const [form] = Form.useForm();
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const handleSubmit = async (values) => {
+    const { email, password, confirmPassword } = values;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (!email.endsWith('.26@dartmouth.edu')) {
+      setError('Email must end with .26@dartmouth.edu');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
     try {
-    //   await register(form);
-      console.log('Successfuly registration');
-      navigate('/login');
+      // await register({ email, password });
+      console.log('Successful registration');
+      navigate('/user-questionnaire');
     } catch {
       setError('Registration failed. Please try again.');
     }
@@ -28,58 +33,55 @@ function Register() {
   return (
     <div className="register-container">
       <h2>Register</h2>
-      {/* <p className="sub-header">Save your password! You will not be able to reset</p> */}
-      <form onSubmit={handleSubmit}>
-        {/* <div className="form-group">
-          <label htmlFor="name">
-            Name:
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div> */}
-        <div className="form-group">
-          <label htmlFor="email">
-            Dartmouth Email:
-            <input
-              type="email"
-              id="email"
-              name="email"
-              style={{ marginLeft: '14px', alignItems: 'center', justifyContent: 'center' }}
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">
-            Password:
-            <input
-              type="password"
-              id="password"
-              name="password"
-              style={{ marginLeft: '14px', alignItems: 'center', justifyContent: 'center' }}
-              value={form.password}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div>
-        {/* <div className="form-group">
-          <label htmlFor="role">
-            Role
-            <input type="text" id="role" name="role" value={form.role} onChange={handleChange} required />
-          </label>
-        </div> */}
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={handleSubmit}
+      >
+        <Form.Item
+          label="Dartmouth Email"
+          name="email"
+          rules={[
+            { required: true, message: 'Please input your Dartmouth email!' },
+            { type: 'email', message: 'Please enter a valid email!' },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: 'Please input your password!' }]}
+          hasFeedback
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item
+          label="Confirm Password"
+          name="confirmPassword"
+          dependencies={['password']}
+          hasFeedback
+          rules={[
+            { required: true, message: 'Please confirm your password!' },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error('The two passwords do not match!'));
+              },
+            }),
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
         {error && <p className="error">{error}</p>}
-        <button className="register-button-submit" type="submit">Register</button>
-      </form>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Register
+          </Button>
+        </Form.Item>
+      </Form>
     </div>
   );
 }
