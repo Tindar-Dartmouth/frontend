@@ -15,6 +15,12 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const emailPattern = /\.26@dartmouth\.edu$/; // Regular expression to check the email pattern
+    if (!emailPattern.test(form.email)) {
+      setError('Email must end with .26@dartmouth.edu');
+      return;
+    }
+
     try {
     //   await login(form);
       console.log('logging in');
