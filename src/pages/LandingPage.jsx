@@ -1,6 +1,6 @@
 import React from 'react';
 // import Stack from '@mui/material/Stack';
-import { Button, Flex, Divider } from 'antd';
+import { Button, Flex } from 'antd';
 // import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import '../style/LandingPageStyle.css';
@@ -27,13 +27,13 @@ function LandingPage() {
           <Button onClick={handleClickRegister}>Register</Button>
         </Flex>
       </div>
-
+      {/*
       <div className="about-us">
         <div className="header">
           <Divider style={{ fontSize: 50, marginTop: 50 }} plain>About Us</Divider>
         </div>
         <p>blah blah blah blah blah</p>
-      </div>
+      </div> */}
     </div>
   );
 }
