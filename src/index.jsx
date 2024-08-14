@@ -20,12 +20,6 @@ function Layout() {
   );
 }
 
-// function Welcome() {
-//   return (
-//     <div>Welcome</div>
-//   );
-// }
-
 function About() {
   return <div>All there is to know about me</div>;
 }
@@ -51,7 +45,6 @@ const router = createBrowserRouter([
       { path: 'recruiting', element: <Recruiting /> },
       { path: 'endorsements', element: <Endorsements /> },
       { path: 'profile', element: <UserProfile /> },
-      // { path: 'landing-page', element: <Suspense fallback={<div>Loading...</div>}><LandingPage /></Suspense> },
       { path: 'about', element: <About /> },
       { path: 'test/:id', element: <Test /> },
       { path: '*', element: <FallBack /> },
@@ -60,4 +53,7 @@ const router = createBrowserRouter([
 ]);
 
 const root = createRoot(document.getElementById('main'));
-root.render(<RouterProvider router={router} />);
+
+root.render(
+  <RouterProvider router={router} />,
+);

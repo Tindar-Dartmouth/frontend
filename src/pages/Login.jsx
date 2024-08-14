@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Updated import
-// import { Button } from 'antd';
-// import { login } from '../services/authService';
+import { useNavigate } from 'react-router-dom';
+import useStore from '../store/index'; // Import the zustand store
 import '../style/LoginStyle.css';
 
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
-  const navigate = useNavigate(); // Updated hook
+  const {
+    login, isLoading, error, setError,
+  } = useStore();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -15,6 +16,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const emailPattern = /\.26@dartmouth\.edu$/; // Regular expression to check the email pattern
     if (!emailPattern.test(form.email)) {
       setError('Email must end with .26@dartmouth.edu');
@@ -22,11 +24,17 @@ function Login() {
     }
 
     try {
-    //   await login(form);
-      console.log('logging in');
-      navigate('/recruiting'); // Updated navigation
-    } catch {
-      console.log('failed log in');
+      console.log(form.email);
+      console.log(form.password);
+      const redirectUrl = await login(form.email, form.password); // Use the zustand login action
+      console.log(redirectUrl);
+      if (redirectUrl) {
+        navigate(redirectUrl);
+      } else {
+        setError('Invalid email or password');
+      }
+      // navigate('/recruiting');
+    } catch (error2) {
       setError('Invalid email or password');
     }
   };
@@ -64,7 +72,9 @@ function Login() {
           </label>
         </div>
         {error && <p className="error">{error}</p>}
-        <button className="login-submit-button" type="submit">Login</button>
+        <button className="login-submit-button" disabled={isLoading} type="submit">
+          {isLoading ? 'Logging in...' : 'Login'}
+        </button>
       </form>
     </div>
   );
