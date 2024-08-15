@@ -29,11 +29,10 @@ function Login() {
       const redirectUrl = await login(form.email, form.password); // Use the zustand login action
       console.log(redirectUrl);
       if (redirectUrl) {
-        navigate(redirectUrl);
+        navigate(redirectUrl.redirect);
       } else {
         setError('Invalid email or password');
       }
-      // navigate('/recruiting');
     } catch (error2) {
       setError('Invalid email or password');
     }
