@@ -54,6 +54,42 @@ const useStore = create(devtools(immer((set) => ({
     }
   },
 
+  fetchUsers: async () => {
+    set((draft) => {
+      draft.isLoading = true;
+      draft.error = null;
+    });
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/recruiting', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        set((draft) => {
+          draft.users = data.users; // Adjust based on the actual structure
+          draft.isLoading = false;
+        });
+        return data;
+      } else {
+        throw new Error(data.error || 'Failed to fetch users');
+      }
+    } catch (error) {
+      set((draft) => {
+        draft.isLoading = false;
+        draft.error = error.message;
+      });
+
+      return { error: error.message };
+    }
+  },
+
   logout: () => set((draft) => {
     draft.user = null;
     draft.isAuthenticated = false;
@@ -92,6 +128,7 @@ const useStore = create(devtools(immer((set) => ({
     try {
       const response = await fetch('http://127.0.0.1:5000/api/register', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -130,10 +167,10 @@ const useStore = create(devtools(immer((set) => ({
     try {
       const response = await fetch('http://127.0.0.1:5000/api/profile', {
         method: 'GET',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // Ensure cookies are sent
       });
 
       const data = await response.json();
