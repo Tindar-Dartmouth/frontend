@@ -12,30 +12,7 @@ function Register() {
 
   const handleSubmit = async (values) => {
     const {
-      email,
-      password,
-      confirmPassword,
-      major,
-      minor,
-      sex,
-      prefSex,
-      gpa,
-      ricePurity,
-      skill1,
-      skill2,
-      skill3,
-      interest1,
-      interest2,
-      interest3,
-      noun1,
-      noun2,
-      noun3,
-      adj1,
-      adj2,
-      adj3,
-      verb1,
-      verb2,
-      verb3,
+      email, password, confirmPassword, major, minor, gpa, ricePurity, skill1, skill2, skill3, interest1, interest2, interest3, noun1, noun2, noun3, adj1, adj2, adj3, verb1, verb2, verb3,
     } = values;
 
     if (!email.endsWith('.26@dartmouth.edu')) {
@@ -54,8 +31,6 @@ function Register() {
         password,
         major,
         minor,
-        sex,
-        prefSex,
         gpa,
         ricePurity,
         skill1,
@@ -152,46 +127,6 @@ function Register() {
           <Input />
         </Form.Item>
         <Form.Item
-          label="sex" // Corrected label
-          name="sex" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="pref sex ('m' 'f' or 'b')" // Corrected label
-          name="prefSex" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="GPA" // Corrected label
-          name="gpa" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Rice purity score" // Corrected label
-          name="ricePurity" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
           label="Skill1" // Corrected label
           name="skill1" // Ensure this matches the name used in your backend and store
           rules={[
@@ -244,6 +179,26 @@ function Register() {
         <Form.Item
           label="Interest3" // Corrected label
           name="interest3" // Ensure this matches the name used in your backend and store
+          rules={[
+            { required: true, message: 'Please input your major!' }, // Updated message
+            // Removed incorrect type validation
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="GPA" // Corrected label
+          name="gpa" // Ensure this matches the name used in your backend and store
+          rules={[
+            { required: true, message: 'Please input your major!' }, // Updated message
+            // Removed incorrect type validation
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Rice purity score" // Corrected label
+          name="ricePurity" // Ensure this matches the name used in your backend and store
           rules={[
             { required: true, message: 'Please input your major!' }, // Updated message
             // Removed incorrect type validation
@@ -322,7 +277,7 @@ function Register() {
           <Input />
         </Form.Item>
         <Form.Item
-          label="adj2" // Corrected label
+          label="adj1" // Corrected label
           name="adj2" // Ensure this matches the name used in your backend and store
           rules={[
             { required: true, message: 'Please input your major!' }, // Updated message

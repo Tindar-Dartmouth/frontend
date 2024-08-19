@@ -59,31 +59,7 @@ const useStore = create(devtools(immer((set) => ({
     draft.isAuthenticated = false;
   }),
 
-  register: async (
-    email,
-    password,
-    major,
-    minor,
-    sex,
-    prefSex,
-    gpa,
-    ricePurity,
-    skill1,
-    skill2,
-    skill3,
-    interest1,
-    interest2,
-    interest3,
-    noun1,
-    noun2,
-    noun3,
-    adj1,
-    adj2,
-    adj3,
-    verb1,
-    verb2,
-    verb3,
-  ) => {
+  register: async (email, password, major, minor, gpa, ricePurity, skill1, skill2, skill3, interest1, interest2, interest3, noun1, noun2, noun3, adj1, adj2, adj3, verb1, verb2, verb3) => {
     set((draft) => {
       draft.isLoading = true;
       draft.error = null;
@@ -96,7 +72,7 @@ const useStore = create(devtools(immer((set) => ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email, password, major, minor, sex, prefSex, gpa, ricePurity, skill1, skill2, skill3, interest1, interest2, interest3, noun1, noun2, noun3, adj1, adj2, adj3, verb1, verb2, verb3,
+          email, password, major, minor, gpa, ricePurity, skill1, skill2, skill3, interest1, interest2, interest3, noun1, noun2, noun3, adj1, adj2, adj3, verb1, verb2, verb3,
         }),
       });
 
@@ -106,7 +82,7 @@ const useStore = create(devtools(immer((set) => ({
         set((draft) => {
           draft.isLoading = false;
         });
-        console.log(data);
+
         return data;
       } else {
         throw new Error(data.error || 'Registration failed');
