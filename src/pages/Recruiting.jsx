@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useStore from '../store/index'; // Import the zustand store
 
 function Recruiting() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState({});
   const { setError, isLoading, setLoading } = useStore();
 
   const fetchUsers = async () => {
@@ -19,10 +19,10 @@ function Recruiting() {
       });
 
       const data = await response.json();
-
       if (response.ok) {
-        setUsers(data.users); // Assuming the backend sends { users: [...] }
-        console.log('Session data:', data.session);
+        console.log('Response was okay.');
+        setUsers(data); // Assuming the backend sends { users: [...] }
+        console.log('Session data:', data);
       } else {
         throw new Error(data.error || 'Failed to fetch users');
       }
@@ -39,18 +39,35 @@ function Recruiting() {
 
   return (
     <div className="recruiting-container">
-      <h2>Recruiting</h2>
+      <h2>Recruiting Page</h2>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
         <ul>
-          {users.map((user) => (
-            <li key={user.id}> {/* Use user.id or another unique identifier */}
-              <p>{user.name}</p>
-              <p>{user.email}</p>
-              {/* Display other user details as needed */}
-            </li>
-          ))}
+          {Object.keys(users).length > 0 ? (
+            Object.keys(users).map((id) => {
+              const user = users[id];
+              return (
+                <li key={id}>
+                  <h3>{user.name}</h3>
+                  <p><strong>Email:</strong> {user.email}</p>
+                  <p><strong>Class Year:</strong> {user.classYear}</p>
+                  <p><strong>Major:</strong> {user.major?.[0] || 'N/A'}</p>
+                  <p><strong>Minor:</strong> {user.minor?.[0] || 'N/A'}</p>
+                  <p><strong>Interests:</strong> {user.interests?.[0] || 'N/A'}</p>
+                  <p><strong>Skills:</strong> {user.skills?.[0] || 'N/A'}</p>
+                  <p><strong>Tindar Index:</strong> {user.tindarIndex?.[0] || 'N/A'}</p>
+                  <p><strong>Blurb:</strong> {user.blurb?.[0] || 'N/A'}</p>
+                  <p><strong>Endorsements:</strong> {user.endorsements?.map(([endorserId, comment]) => (
+                    <span key={endorserId}> {comment}</span>
+                  )) || 'N/A'}
+                  </p>
+                </li>
+              );
+            })
+          ) : (
+            <p>No users found.</p>
+          )}
         </ul>
       )}
     </div>
