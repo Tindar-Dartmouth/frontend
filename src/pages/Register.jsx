@@ -74,7 +74,7 @@ function Register() {
         verb2,
         verb3,
       );
-      if (result) {
+      if (result.message) {
         navigate('/recruiting'); // Redirect on successful registration
       } else {
         setError('Registration failed. Please try again.');
