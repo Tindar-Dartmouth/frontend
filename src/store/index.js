@@ -126,13 +126,14 @@ const useStore = create(devtools(immer((set) => ({
   },
 
   getProfile: async () => {
+    console.log('inside of getprofile');
     set((draft) => {
       draft.isLoading = true;
       draft.error = null;
     });
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/profile', {
+      const response = await fetch('http://127.0.0.1:5000/api/userProfile', {
         method: 'GET',
         credentials: 'include',
         headers: {

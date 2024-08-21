@@ -29,7 +29,8 @@ function Login() {
       const redirectUrl = await login(form.email, form.password); // Use the zustand login action
       console.log(redirectUrl);
       if (redirectUrl) {
-        navigate(redirectUrl.redirect);
+        // navigate(redirectUrl.redirect);
+        navigate('/profile');
       } else {
         setError('Invalid email or password');
       }
