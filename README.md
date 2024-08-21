@@ -1,2 +1,8 @@
-# SlinkedIn Frontend Repository
-Setup will be here
+# Tindar Frontend Repository
+Set Up
+
+First install the package
+`npm i`
+
+Run the dev env using 
+`npm run dev`

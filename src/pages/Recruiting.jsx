@@ -7,9 +7,12 @@ function Recruiting() {
 
   const fetchUsers = async () => {
     setLoading(true);
+
     try {
       const response = await fetch('http://127.0.0.1:5000/api/recruiting', {
         method: 'GET',
+        credentials: 'include',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -19,6 +22,7 @@ function Recruiting() {
 
       if (response.ok) {
         setUsers(data.users); // Assuming the backend sends { users: [...] }
+        console.log('Session data:', data.session);
       } else {
         throw new Error(data.error || 'Failed to fetch users');
       }
