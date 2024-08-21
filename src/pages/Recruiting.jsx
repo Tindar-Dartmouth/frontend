@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import useStore from "../store/index"; // Import the zustand store
+import React, { useEffect, useState } from 'react';
+import useStore from '../store/index'; // Import the zustand store
 
 function Recruiting() {
   const [users, setUsers] = useState([]);
@@ -9,24 +9,22 @@ function Recruiting() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/recruiting", {
-        method: "GET",
-        credentials: "include",
-        mode: "cors",
+      const response = await fetch('http://127.0.0.1:5000/api/recruiting', {
+        method: 'GET',
+        credentials: 'include',
+        mode: 'cors',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       });
 
       const data = await response.json();
-      console.log("Cookies in the browser:", document.cookie);
-      console.log(data);
 
       if (response.ok) {
-         // Assuming the backend sends { users: [...] }
-        setUsers(data.users);
+        setUsers(data.users); // Assuming the backend sends { users: [...] }
+        console.log('Session data:', data.session);
       } else {
-        throw new Error(data.error || "Failed to fetch users");
+        throw new Error(data.error || 'Failed to fetch users');
       }
     } catch (error) {
       setError(error.message);
@@ -47,9 +45,7 @@ function Recruiting() {
       ) : (
         <ul>
           {users.map((user) => (
-            <li key={user.id}>
-              {" "}
-              {/* Use user.id or another unique identifier */}
+            <li key={user.id}> {/* Use user.id or another unique identifier */}
               <p>{user.name}</p>
               <p>{user.email}</p>
               {/* Display other user details as needed */}
