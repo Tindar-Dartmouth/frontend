@@ -12,6 +12,8 @@ import LandingPage from './pages/LandingPage';
 import Endorsements from './pages/Endorsements';
 import UserProfile from './pages/UserProfile';
 import OtherProfile from './pages/OtherProfile';
+import Leaderboard from './pages/Leaderboard';
+import Connections from './pages/Connections';
 
 function Layout() {
   return (
@@ -44,7 +46,9 @@ const router = createBrowserRouter([
       { path: 'register', element: <Register /> },
       { path: 'user-questionnaire', element: <UserQuestions /> },
       { path: 'recruiting', element: <Recruiting /> },
+      { path: 'connections', element: <Connections /> },
       { path: 'endorsements', element: <Endorsements /> },
+      { path: 'leaderboard', element: <Leaderboard /> },
       { path: 'profile', element: <UserProfile /> },
       { path: 'profile/:userID', element: <OtherProfile /> },
       { path: 'about', element: <About /> },

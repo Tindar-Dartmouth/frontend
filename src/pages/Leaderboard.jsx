@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useStore from '../store/index'; // Import the zustand store
 
-function Connections() {
+function Leaderboard() {
   const [users, setUsers] = useState({});
   const { setError, isLoading, setLoading } = useStore();
 
@@ -9,7 +9,7 @@ function Connections() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/connections', {
+      const response = await fetch('http://127.0.0.1:5000/api/leaderboard', {
         method: 'GET',
         credentials: 'include',
         mode: 'cors',
@@ -24,7 +24,7 @@ function Connections() {
         setUsers(data);
         console.log('Session data:', data);
       } else {
-        throw new Error(data.error || 'Failed to fetch connections');
+        throw new Error(data.error || 'Failed to fetch leaderboard');
       }
     } catch (error) {
       setError(error.message);
@@ -66,7 +66,7 @@ function Connections() {
               );
             })
           ) : (
-            <p>Sorry. No connections yet</p>
+            <p>No users found.</p>
           )}
         </ul>
       )}
@@ -74,4 +74,4 @@ function Connections() {
   );
 }
 
-export default Connections;
+export default Leaderboard;

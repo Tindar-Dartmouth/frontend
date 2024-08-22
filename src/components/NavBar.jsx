@@ -18,8 +18,8 @@ function NavBar() {
       <Menu.Item key="connections" icon={<MessageOutlined />}>
         <NavLink to="/connections">Connections</NavLink>
       </Menu.Item>
-      <Menu.Item key="endorsements" icon={<RocketOutlined />}>
-        <NavLink to="/endorsements">Endorsements</NavLink>
+      <Menu.Item key="leaderboard" icon={<RocketOutlined />}>
+        <NavLink to="/leaderboard">Leaderboard</NavLink>
       </Menu.Item>
       <Menu.Item key="resume" icon={<UserOutlined />}>
         <NavLink to="/profile">Resume</NavLink>
