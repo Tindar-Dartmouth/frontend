@@ -162,6 +162,46 @@ const useStore = create(devtools(immer((set) => ({
       return { error: error.message }; // Return the error message to handle it in the frontend
     }
   },
+
+  getOtherProfile: async (userID) => {
+    console.log('inside of getOtherProfile');
+    console.log(userID);
+    set((draft) => {
+      draft.isLoading = true;
+      draft.error = null;
+    });
+
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/api/otherProfile?userID=${userID}`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        set((draft) => {
+          draft.user = data.user;
+          draft.isLoading = false;
+        });
+
+        return data; // Return the response data to handle it in the frontend
+      } else {
+        throw new Error(data.error || 'Failed to fetch profile');
+      }
+    } catch (error) {
+      set((draft) => {
+        draft.isLoading = false;
+        draft.error = error.message;
+      });
+
+      return { error: error.message }; // Return the error message to handle it in the frontend
+    }
+  },
+
 }))));
 
 export default useStore;

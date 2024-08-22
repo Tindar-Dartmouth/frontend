@@ -11,6 +11,7 @@ import Recruiting from './pages/Recruiting';
 import LandingPage from './pages/LandingPage';
 import Endorsements from './pages/Endorsements';
 import UserProfile from './pages/UserProfile';
+import OtherProfile from './pages/OtherProfile';
 
 function Layout() {
   return (
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
       { path: 'recruiting', element: <Recruiting /> },
       { path: 'endorsements', element: <Endorsements /> },
       { path: 'profile', element: <UserProfile /> },
+      { path: 'profile/:userID', element: <OtherProfile /> },
       { path: 'about', element: <About /> },
       { path: 'test/:id', element: <Test /> },
       { path: '*', element: <FallBack /> },

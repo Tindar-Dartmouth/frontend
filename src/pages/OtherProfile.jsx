@@ -1,24 +1,24 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom'; // Import useParams to access route parameters
 import { Image } from 'antd';
-import useStore from '../store/index'; // Import the zustand store
+import useStore from '../store/index';
 import NavBar from '../components/NavBar';
 import '../style/UserProfileStyle.css';
 
-function UserProfile() {
+function OtherProfile() {
+  const { userID } = useParams(); // Get userID from route parameters
   const {
-    user, getProfile, isLoading, error,
+    user,
+    getOtherProfile,
+    isLoading,
+    error,
   } = useStore();
 
-  const navigate = useNavigate();
-  const goToUserProfile = (userID) => {
-    console.log('were here');
-    navigate(`/profile/${userID}`);
-  };
-
   useEffect(() => {
-    getProfile();
-  }, [getProfile]);
+    if (userID) {
+      getOtherProfile(userID);
+    }
+  }, [userID, getOtherProfile]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -34,7 +34,7 @@ function UserProfile() {
 
   return (
     <div className="profile-container">
-      <h1>Your Profile</h1>
+      <h1>Other Profile</h1>
       <Image src="https://via.placeholder.com/150" />
       <h2>Name: {user.name}</h2>
       <p>Email: {user.email}</p>
@@ -47,13 +47,9 @@ function UserProfile() {
       <p>Blurb: {user.blurb}</p>
       <p>Endorsements Remaining: {user.endorsementsRemaining}</p>
       <p>Referrals Remaining: {user.referralsRemaining}</p>
-      <div>
-        <h1>Some Page</h1>
-        <button type="submit" onClick={() => goToUserProfile(49468)}>Go to User 49468s Profile</button>
-      </div>
       <NavBar />
     </div>
   );
 }
 
-export default UserProfile;
+export default OtherProfile;
