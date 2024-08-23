@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import NavBar from '../components/NavBar';
 import useStore from '../store/index'; // Import the zustand store
 
 function Leaderboard() {
@@ -39,7 +40,7 @@ function Leaderboard() {
 
   return (
     <div className="recruiting-container">
-      <h2>Leaderbaord of Most Endrosed Applicants</h2>
+      <h2>Leaderboard of Most Endorsed Applicants</h2>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
@@ -70,6 +71,7 @@ function Leaderboard() {
           )}
         </ul>
       )}
+      <NavBar />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useStore from '../store/index'; // Import the zustand store
+import NavBar from '../components/NavBar';
 
 function Connections() {
   const [users, setUsers] = useState({});
@@ -39,7 +40,7 @@ function Connections() {
 
   return (
     <div className="recruiting-container">
-      <h2>Leaderbaord of Most Endrosed Applicants</h2>
+      <h2>Connections Page</h2>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
@@ -70,6 +71,7 @@ function Connections() {
           )}
         </ul>
       )}
+      <NavBar />
     </div>
   );
 }

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import NavBar from '../components/NavBar';
+
 import useStore from '../store/index'; // Import the zustand store
 
 function Recruiting() {
@@ -70,6 +72,7 @@ function Recruiting() {
           )}
         </ul>
       )}
+      <NavBar />
     </div>
   );
 }
