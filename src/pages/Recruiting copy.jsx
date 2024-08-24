@@ -281,19 +281,3 @@ function Recruiting() {
 }
 
 export default Recruiting;
-// <div className="recruiting-container">
-    //   <h2>Recruiting Page</h2>
-    //   {isLoading ? (
-    //     <p>Loading...</p>
-    //   ) : (
-    //     <ul>
-    //       {users.map((user) => (
-    //         <li key={user.id}> {/* Use user.id or another unique identifier */}
-    //           <p>{user.name}</p>
-    //           <p>{user.email}</p>
-    //           {/* Display other user details as needed */}
-    //         </li>
-    //       ))}
-    //     </ul>
-    //   )}
-    // </div>
