@@ -5,7 +5,7 @@ body {
     height: 100%;
 }
 .landing-page-container {
-    background: linear-gradient(to right, #ff6a6a, #ff9a3e);
+    background: linear-gradient(to right top, #fd5564, #ef4a75);
     height: 100vh;
     width: 100vw;
     margin: 0;
@@ -17,6 +17,33 @@ body {
 .landing-page-header {
     display: flex;
     color: rgb(255, 255, 255);
+}
+.landing-page-header h1 {
+    font-size: 50px;
+}
+.login-button {
+    width: 80px;
+    height: 33px;
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+}
+.login-button:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+.register-button {
+    background-color: white;
+    color: black;
+    width: 80px;
+    height: 33px;
+    border-radius: 8px;
+}
+.register-button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
 .header {
     font-size: 50px;
