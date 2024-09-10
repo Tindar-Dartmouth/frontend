@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import VerifyEmail1 from './pages/VerifyEmail1';
+import VerifyEmail2 from './pages/VerifyEmail2';
 import UserQuestions from './pages/UserQuestions';
 import Recruiting from './pages/Recruiting';
 import LandingPage from './pages/LandingPage';
@@ -44,6 +46,8 @@ const router = createBrowserRouter([
       { index: true, element: <LandingPage /> },
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Register /> },
+      { path: 'verifyEmail1', element: <VerifyEmail1 /> },
+      { path: 'verifyEmail2', element: <VerifyEmail2 /> },
       { path: 'user-questionnaire', element: <UserQuestions /> },
       { path: 'recruiting', element: <Recruiting /> },
       { path: 'connections', element: <Connections /> },

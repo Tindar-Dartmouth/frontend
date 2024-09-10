@@ -125,6 +125,89 @@ const useStore = create(devtools(immer((set) => ({
     }
   },
 
+  verifyEmail1: async (
+    email,
+  ) => {
+    set((draft) => {
+      draft.isLoading = true;
+      draft.error = null;
+    });
+
+    try {
+      console.log('wer are here');
+      const response = await fetch('http://127.0.0.1:5000/api/verifyEmail-1', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        set((draft) => {
+          draft.isLoading = false;
+        });
+        console.log(data);
+        return data;
+      } else {
+        throw new Error(data.error || 'Email Verification Failed');
+      }
+    } catch (error) {
+      set((draft) => {
+        draft.isLoading = false;
+        draft.error = error.message;
+      });
+
+      return { error: error.message };
+    }
+  },
+
+  verifyEmail2: async (
+    emailKey,
+  ) => {
+    set((draft) => {
+      draft.isLoading = true;
+      draft.error = null;
+    });
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/verifyEmail-2', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          emailKey,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        set((draft) => {
+          draft.isLoading = false;
+        });
+        console.log(data);
+        return data;
+      } else {
+        throw new Error(data.error || 'Email Verification Failed');
+      }
+    } catch (error) {
+      set((draft) => {
+        draft.isLoading = false;
+        draft.error = error.message;
+      });
+
+      return { error: error.message };
+    }
+  },
+
   getProfile: async () => {
     console.log('inside of getprofile');
     set((draft) => {

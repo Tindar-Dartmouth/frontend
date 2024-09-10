@@ -27,15 +27,6 @@ function Register() {
       interest1,
       interest2,
       interest3,
-      noun1,
-      noun2,
-      noun3,
-      adj1,
-      adj2,
-      adj3,
-      verb1,
-      verb2,
-      verb3,
     } = values;
 
     if (!email.endsWith('.26@dartmouth.edu')) {
@@ -64,15 +55,6 @@ function Register() {
         interest1,
         interest2,
         interest3,
-        noun1,
-        noun2,
-        noun3,
-        adj1,
-        adj2,
-        adj3,
-        verb1,
-        verb2,
-        verb3,
       );
       if (result.message) {
         navigate('/recruiting'); // Redirect on successful registration
@@ -244,96 +226,6 @@ function Register() {
         <Form.Item
           label="Interest3" // Corrected label
           name="interest3" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="noun1" // Corrected label
-          name="noun1" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="noun2" // Corrected label
-          name="noun2" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="noun3" // Corrected label
-          name="noun3" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="verb1" // Corrected label
-          name="verb1" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="verb2" // Corrected label
-          name="verb2" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="verb3" // Corrected label
-          name="verb3" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="adj1" // Corrected label
-          name="adj1" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="adj2" // Corrected label
-          name="adj2" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="adj3" // Corrected label
-          name="adj3" // Ensure this matches the name used in your backend and store
           rules={[
             { required: true, message: 'Please input your major!' }, // Updated message
             // Removed incorrect type validation

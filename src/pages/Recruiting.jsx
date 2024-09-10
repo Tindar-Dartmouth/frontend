@@ -8,6 +8,7 @@ import '../style/RecruitingStyle.css'; // Make sure this CSS file is still inclu
 // SwipingCards component definition
 function SwipingCards({ data }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [deckEmpty, setDeckEmpty] = useState(false);
   const [swipeDirection, setSwipeDirection] = useState('');
 
   const handleSwipe = (direction) => {
@@ -15,8 +16,13 @@ function SwipingCards({ data }) {
     setTimeout(() => {
       console.log(direction === 'right' ? 'Liked' : 'Disliked', data[currentIndex].name);
       setSwipeDirection('');
-      const nextIndex = (currentIndex + 1) % data.length;
+      // const nextIndex = (currentIndex + 1) % data.length;
+      const nextIndex = (currentIndex + 1);
       setCurrentIndex(nextIndex);
+      if (currentIndex >= data.length - 1) {
+        console.log('deck proc.d as empty');
+        setDeckEmpty(true);
+      }
     }, 500); // Duration should match the CSS transition time
   };
 
@@ -28,48 +34,50 @@ function SwipingCards({ data }) {
   });
 
   if (data.length === 0) return <p>No data available</p>;
-
-  return (
-    <div className="recruiting-container">
-      <div
-        role="button"
-        aria-label="Swipeable card"
-        tabIndex={0}
-        onMouseDown={swipeHandlers.onMouseDown}
-        onMouseUp={swipeHandlers.onMouseUp}
-        onTouchStart={swipeHandlers.onTouchStart}
-        onTouchEnd={swipeHandlers.onTouchEnd}
-        onKeyDown={(e) => {
-          if (e.key === 'ArrowLeft') handleSwipe('left');
-          if (e.key === 'ArrowRight') handleSwipe('right');
-        }}
-      >
-        <Card
-          className={`card ${swipeDirection === 'left' ? 'swipe-left' : ''} ${swipeDirection === 'right' ? 'swipe-right' : ''}`}
-          cover={(
-            <div className="image-container">
-              <img alt={data[currentIndex].name} src={data[currentIndex].image} className="card-image" />
-              <div className="text-overlay">
-                <div className="text-content">
-                  <span className="card-meta-title">{data[currentIndex].name}</span>
-                  <div className="card-meta-subtitle">Major: {data[currentIndex].major}</div>
-                  <div className="card-meta-subtitle">Minor: {data[currentIndex].minor}</div>
-                  <div className="card-meta-subtitle">Skills: {data[currentIndex].skills.join(', ')}</div>
-                  <div className="card-meta-subtitle">Interests: {data[currentIndex].interests.join(', ')}</div>
-                  <div className="card-meta-subtitle">Tindar Index: {data[currentIndex].tindarIndex}</div>
+  if (deckEmpty) return <p>Deck is empty</p>;
+  else {
+    return (
+      <div className="recruiting-container">
+        <div
+          role="button"
+          aria-label="Swipeable card"
+          tabIndex={0}
+          onMouseDown={swipeHandlers.onMouseDown}
+          onMouseUp={swipeHandlers.onMouseUp}
+          onTouchStart={swipeHandlers.onTouchStart}
+          onTouchEnd={swipeHandlers.onTouchEnd}
+          onKeyDown={(e) => {
+            if (e.key === 'ArrowLeft') handleSwipe('left');
+            if (e.key === 'ArrowRight') handleSwipe('right');
+          }}
+        >
+          <Card
+            className={`card ${swipeDirection === 'left' ? 'swipe-left' : ''} ${swipeDirection === 'right' ? 'swipe-right' : ''}`}
+            cover={(
+              <div className="image-container">
+                <img alt={data[currentIndex].name} src={data[currentIndex].image} className="card-image" />
+                <div className="text-overlay">
+                  <div className="text-content">
+                    <span className="card-meta-title">{data[currentIndex].name}</span>
+                    <div className="card-meta-subtitle">Major: {data[currentIndex].major}</div>
+                    <div className="card-meta-subtitle">Minor: {data[currentIndex].minor}</div>
+                    <div className="card-meta-subtitle">Skills: {data[currentIndex].skills.join(', ')}</div>
+                    <div className="card-meta-subtitle">Interests: {data[currentIndex].interests.join(', ')}</div>
+                    <div className="card-meta-subtitle">Tindar Index: {data[currentIndex].tindarIndex}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
-          style={{ width: 300, margin: '0 auto', textAlign: 'center' }}
-        />
+            )}
+            style={{ width: 300, margin: '0 auto', textAlign: 'center' }}
+          />
+        </div>
+        <div className="buttons-container">
+          <Button onClick={() => handleSwipe('left')}>No</Button>
+          <Button onClick={() => handleSwipe('right')}>Yes</Button>
+        </div>
       </div>
-      <div className="buttons-container">
-        <Button onClick={() => handleSwipe('left')}>No</Button>
-        <Button onClick={() => handleSwipe('right')}>Yes</Button>
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 // Recruiting component definition
