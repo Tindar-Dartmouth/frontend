@@ -20,7 +20,6 @@ function LandingPage() {
     <div className="landing-page-container">
       <div className="landing-page-header">
         <h1>Tindar</h1>
-        <br />
         <h2>Strictly Business</h2>
       </div>
       <div className="register-login-buttons">
@@ -29,13 +28,6 @@ function LandingPage() {
           <button className="register-button" type="button" onClick={handleClickRegister}>Register</button>
         </Flex>
       </div>
-      {/*
-      <div className="about-us">
-        <div className="header">
-          <Divider style={{ fontSize: 50, marginTop: 50 }} plain>About Us</Divider>
-        </div>
-        <p>blah blah blah blah blah</p>
-      </div> */}
     </div>
   );
 }
