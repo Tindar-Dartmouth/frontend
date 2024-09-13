@@ -25,11 +25,11 @@ const useStore = create(devtools(immer((set) => ({
     try {
       const response = await fetch('http://127.0.0.1:5000/api/login', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
-        credentials: 'include',
       });
 
       const data = await response.json();
@@ -134,7 +134,6 @@ const useStore = create(devtools(immer((set) => ({
     });
 
     try {
-      console.log('wer are here');
       const response = await fetch('http://127.0.0.1:5000/api/verifyEmail-1', {
         method: 'POST',
         credentials: 'include',
@@ -163,6 +162,70 @@ const useStore = create(devtools(immer((set) => ({
         draft.error = error.message;
       });
 
+      return { error: error.message };
+    }
+  },
+
+  endorse: async (email, msg) => {
+    set((draft) => {
+      draft.isLoading = true;
+      draft.error = null;
+    });
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/endorse', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, msg }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Email verification failed.');
+      }
+      set((draft) => {
+        draft.isLoading = false;
+      });
+      console.log(data);
+      return data;
+    } catch (error) {
+      set((draft) => {
+        draft.isLoading = false;
+        draft.error = error.message;
+      });
+      return { error: error.message };
+    }
+  },
+
+  refer: async (email1, email2) => {
+    set((draft) => {
+      draft.isLoading = true;
+      draft.error = null;
+    });
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/refer', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email1, email2 }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Referral failed.');
+      }
+      set((draft) => {
+        draft.isLoading = false;
+      });
+      console.log(data);
+      return data;
+    } catch (error) {
+      set((draft) => {
+        draft.isLoading = false;
+        draft.error = error.message;
+      });
       return { error: error.message };
     }
   },

@@ -1,19 +1,44 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Image } from 'antd';
+import {
+  Image, Form, Input, Button,
+} from 'antd';
 import useStore from '../store/index'; // Import the zustand store
 import NavBar from '../components/NavBar';
 import '../style/UserProfileStyle.css';
 
 function UserProfile() {
+  const { endorse, refer } = useStore();
   const {
-    user, getProfile, isLoading, error,
+    user, getProfile, isLoading, error, setError,
   } = useStore();
 
   const navigate = useNavigate();
   const goToUserProfile = (userID) => {
     console.log('were here');
     navigate(`/profile/${userID}`);
+  };
+
+  // Endorsement form handler (Form 1)
+  const handleEndorse = async (values) => {
+    const { email, msg } = values;
+    try {
+      const result = await endorse(email, msg); // Send to first backend endpoint
+      console.log(result);
+    } catch {
+      setError('Endorsement failed.');
+    }
+  };
+
+  // Referral form handler (Form 2)
+  const handleReferral = async (values) => {
+    const { email1, email2 } = values;
+    try {
+      const result = await refer(email1, email2); // Send to second backend endpoint
+      console.log(result);
+    } catch {
+      setError('Referral failed.');
+    }
   };
 
   useEffect(() => {
@@ -46,10 +71,59 @@ function UserProfile() {
       <p>Endorsements: {user.endorsements}</p>
       <p>Endorsements Remaining: {user.endorsementsRemaining}</p>
       <p>Referrals Remaining: {user.referralsRemaining}</p>
-      <div>
-        <h1>Some Page</h1>
-        <button type="submit" onClick={() => goToUserProfile(49468)}>Go to User 49468s Profile</button>
-      </div>
+      <h1>Some Page</h1>
+      <button type="submit" onClick={() => goToUserProfile(49468)}>Go to User 49468s Profile</button>
+      {/* Form 1: Endorsement */}
+      <h2>Endorse a User</h2>
+      <Form layout="vertical" onFinish={handleEndorse}>
+        <Form.Item
+          label="Enter Email"
+          name="email"
+          rules={[
+            { required: true, message: 'Please enter a valid email' },
+            { type: 'email', message: 'Please enter a valid email' },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Enter msg"
+          name="msg"
+          rules={[{ required: true, message: 'Please enter a message' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" loading={isLoading}>
+            Endorse
+          </Button>
+        </Form.Item>
+      </Form>
+
+      {/* Form 2: Referral */}
+      <h2>Send a Referral</h2>
+      <Form layout="vertical" onFinish={handleReferral}>
+        <Form.Item
+          label="Email1"
+          name="email1"
+          rules={[{ required: true, message: 'Please enter a valid dartmouth email' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Email2"
+          name="email2"
+          rules={[{ required: true, message: 'Please enter a valid dartmouth email' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" loading={isLoading}>
+            Send Referral
+          </Button>
+        </Form.Item>
+      </Form>
+
       <NavBar />
     </div>
   );

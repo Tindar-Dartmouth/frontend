@@ -11,19 +11,40 @@ function SwipingCards({ data }) {
   const [deckEmpty, setDeckEmpty] = useState(false);
   const [swipeDirection, setSwipeDirection] = useState('');
 
-  const handleSwipe = (direction) => {
+  const handleSwipe = async (direction) => {
     setSwipeDirection(direction);
+    // new code for post request
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/recruiting', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userID: data[currentIndex].id,
+          choice: direction,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send swipe direction');
+      }
+      console.log('Swipe direction sent successfully');
+    } catch (error) {
+      console.error('Error sending swipe direction:', error);
+    }
+    // end of post request code
     setTimeout(() => {
       console.log(direction === 'right' ? 'Liked' : 'Disliked', data[currentIndex].name);
       setSwipeDirection('');
-      // const nextIndex = (currentIndex + 1) % data.length;
       const nextIndex = (currentIndex + 1);
       setCurrentIndex(nextIndex);
       if (currentIndex >= data.length - 1) {
         console.log('deck proc.d as empty');
         setDeckEmpty(true);
       }
-    }, 500); // Duration should match the CSS transition time
+    }, 500);
   };
 
   const swipeHandlers = useSwipeable({
