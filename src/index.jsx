@@ -54,7 +54,7 @@ const router = createBrowserRouter([
       { path: 'endorsements', element: <Endorsements /> },
       { path: 'leaderboard', element: <Leaderboard /> },
       { path: 'profile', element: <UserProfile /> },
-      { path: 'profile/:userID', element: <OtherProfile /> },
+      { path: 'otherProfile', element: <OtherProfile /> },
       { path: 'about', element: <About /> },
       { path: 'test/:id', element: <Test /> },
       { path: '*', element: <FallBack /> },

@@ -16,7 +16,7 @@ function UserProfile() {
   const navigate = useNavigate();
   const goToUserProfile = (userID) => {
     console.log('were here');
-    navigate(`/profile/${userID}`);
+    navigate('/otherProfile', { state: { userID } });
   };
 
   // Endorsement form handler (Form 1)
@@ -72,7 +72,7 @@ function UserProfile() {
       <p>Endorsements Remaining: {user.endorsementsRemaining}</p>
       <p>Referrals Remaining: {user.referralsRemaining}</p>
       <h1>Some Page</h1>
-      <button type="submit" onClick={() => goToUserProfile(49468)}>Go to User 49468s Profile</button>
+      <button type="submit" onClick={() => goToUserProfile(49486)}>Go to User 49468s Profile</button>
       {/* Form 1: Endorsement */}
       <h2>Endorse a User</h2>
       <Form layout="vertical" onFinish={handleEndorse}>

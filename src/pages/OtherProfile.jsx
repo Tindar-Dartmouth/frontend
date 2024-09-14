@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom'; // Import useParams to access route parameters
+import { useLocation } from 'react-router-dom'; // Import useParams to access route parameters
 import { Image } from 'antd';
 import useStore from '../store/index';
 import NavBar from '../components/NavBar';
 import '../style/UserProfileStyle.css';
 
 function OtherProfile() {
-  const { userID } = useParams(); // Get userID from route parameters
+  const location = useLocation();
+  const { userID } = location.state || {};
   const {
     user,
     getOtherProfile,
