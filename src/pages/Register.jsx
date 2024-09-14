@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, Input, Button } from 'antd';
+import { Form, Input } from 'antd';
 import '../style/RegisterStyle.css';
 
 function Register() {
@@ -32,56 +32,58 @@ function Register() {
 
   return (
     <div className="register-container">
-      <h2>Register</h2>
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={handleSubmit}
-      >
-        <Form.Item
-          label="Dartmouth Email"
-          name="email"
-          rules={[
-            { required: true, message: 'Please input your Dartmouth email!' },
-            { type: 'email', message: 'Please enter a valid email!' },
-          ]}
+      <div className="register-section">
+        <h2>Register</h2>
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={handleSubmit}
         >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
-          hasFeedback
-        >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item
-          label="Confirm Password"
-          name="confirmPassword"
-          dependencies={['password']}
-          hasFeedback
-          rules={[
-            { required: true, message: 'Please confirm your password!' },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue('password') === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error('The two passwords do not match!'));
-              },
-            }),
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-        {error && <p className="error">{error}</p>}
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Register
-          </Button>
-        </Form.Item>
-      </Form>
+          <Form.Item
+            label="Dartmouth Email"
+            name="email"
+            rules={[
+              { required: true, message: 'Please input your Dartmouth email!' },
+              { type: 'email', message: 'Please enter a valid email!' },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: 'Please input your password!' }]}
+            hasFeedback
+          >
+            <Input.Password />
+          </Form.Item>
+          <Form.Item
+            label="Confirm Password"
+            name="confirmPassword"
+            dependencies={['password']}
+            hasFeedback
+            rules={[
+              { required: true, message: 'Please confirm your password!' },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('The two passwords do not match!'));
+                },
+              }),
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
+          {error && <p className="error">{error}</p>}
+          <Form.Item>
+            <button type="submit" className="register-button-final">
+              Register
+            </button>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   );
 }
