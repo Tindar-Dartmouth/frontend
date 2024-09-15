@@ -11,7 +11,6 @@ import VerifyEmail2 from './pages/VerifyEmail2';
 import UserQuestions from './pages/UserQuestions';
 import Recruiting from './pages/Recruiting';
 import LandingPage from './pages/LandingPage';
-import Endorsements from './pages/Endorsements';
 import UserProfile from './pages/UserProfile';
 import OtherProfile from './pages/OtherProfile';
 import Leaderboard from './pages/Leaderboard';
@@ -51,7 +50,6 @@ const router = createBrowserRouter([
       { path: 'user-questionnaire', element: <UserQuestions /> },
       { path: 'recruiting', element: <Recruiting /> },
       { path: 'connections', element: <Connections /> },
-      { path: 'endorsements', element: <Endorsements /> },
       { path: 'leaderboard', element: <Leaderboard /> },
       { path: 'profile', element: <UserProfile /> },
       { path: 'otherProfile', element: <OtherProfile /> },
