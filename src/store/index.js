@@ -349,6 +349,47 @@ const useStore = create(devtools(immer((set) => ({
     }
   },
 
+  getMessages: async (selfUserID, bUserID) => {
+    console.log('inside of getMessages');
+    set((draft) => {
+      draft.isLoading = true;
+      draft.error = null;
+    });
+
+    try {
+      console.log('trying');
+      const response = await fetch('http://127.0.0.1:5000/api/messaging', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ selfUserID, bUserID }),
+      });
+      console.log('data: ');
+      const data = await response.json();
+      console.log('data: ', data);
+
+      if (response.ok) {
+        set((draft) => {
+          draft.user = data.user;
+          draft.isLoading = false;
+        });
+
+        return data;
+      } else {
+        throw new Error(data.error || 'Failed to fetch messages');
+      }
+    } catch (error) {
+      set((draft) => {
+        draft.isLoading = false;
+        draft.error = error.message;
+      });
+
+      return { error: error.message };
+    }
+  },
+
 }))));
 
 export default useStore;

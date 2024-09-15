@@ -19,6 +19,11 @@ function UserProfile() {
     navigate('/otherProfile', { state: { userID } });
   };
 
+  const goToNDA = (selfUserID, bUserID) => {
+    console.log('going to NDA now');
+    navigate('/nda', { state: { selfUserID, bUserID } });
+  };
+
   // Endorsement form handler (Form 1)
   const handleEndorse = async (values) => {
     const { email, msg } = values;
@@ -73,6 +78,7 @@ function UserProfile() {
       <p>Referrals Remaining: {user.referralsRemaining}</p>
       <h1>Some Page</h1>
       <button type="submit" onClick={() => goToUserProfile(49486)}>Go to User 49468s Profile</button>
+      <button type="submit" onClick={() => goToNDA(49486, 49485)}>Go to NDA between 49486, 49485</button>
       {/* Form 1: Endorsement */}
       <h2>Endorse a User</h2>
       <Form layout="vertical" onFinish={handleEndorse}>

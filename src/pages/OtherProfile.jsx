@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // Import useParams to access route parameters
+import { useLocation } from 'react-router-dom';
 import { Image } from 'antd';
 import useStore from '../store/index';
 import NavBar from '../components/NavBar';
