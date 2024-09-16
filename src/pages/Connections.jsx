@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useStore from '../store/index'; // Import the zustand store
 import NavBar from '../components/NavBar';
 
 function Connections() {
   const [users, setUsers] = useState({ swipingMatches: [], referrals: [] });
+  const [selfUserID, setSelfUserID] = useState(null);
   const { setError, isLoading, setLoading } = useStore();
+
+  const navigate = useNavigate();
+  const goToNDA = (bUserID) => {
+    navigate('/nda', { state: { selfUserID, bUserID } });
+  };
+
+  const goToUserProfile = (userID) => {
+    navigate('/otherProfile', { state: { userID } });
+  };
 
   const fetchUsers = async () => {
     setLoading(true);
@@ -24,6 +35,9 @@ function Connections() {
         console.log('Response was okay.');
         console.log('Session data:', data);
         const refs = Object.entries(data.refs);
+        const selfUID = data.selfID;
+        console.log('the selfID: ', selfUID);
+        setSelfUserID(selfUID);
         console.log('here the refs: ', refs);
         const swipeMatches = Object.values(data.swipeMatches);
         setUsers({
@@ -57,6 +71,8 @@ function Connections() {
         <p><strong>Major:</strong> {referral.major}</p>
         <p><strong>Minor:</strong> {referral.minor}</p>
         <p><strong>Tindar Index:</strong> {referral.tindarIndex}</p>
+        <button type="submit" onClick={() => goToUserProfile(referral.userID)}>Go to {referral.name}s full profile</button>
+        <button type="submit" onClick={() => goToNDA(referral.userID)}>Go to NDA between with {referral.name}</button>
       </li>
     ));
   };
@@ -77,6 +93,8 @@ function Connections() {
         <p><strong>Major:</strong> {match.major}</p>
         <p><strong>Minor:</strong> {match.minor}</p>
         <p><strong>Tindar Index:</strong> {match.tindarIndex}</p>
+        <button type="submit" onClick={() => goToUserProfile(match.userID)}>Go to {match.name}s full profile</button>
+        <button type="submit" onClick={() => goToNDA(match.userID)}>Go to NDA between with {match.name}</button>
       </li>
     ));
   };

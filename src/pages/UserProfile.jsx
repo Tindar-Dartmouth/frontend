@@ -8,7 +8,7 @@ import NavBar from '../components/NavBar';
 import '../style/UserProfileStyle.css';
 
 function UserProfile() {
-  const { endorse, refer } = useStore();
+  const { endorse, refer, blacklist } = useStore();
   const {
     user, getProfile, isLoading, error, setError,
   } = useStore();
@@ -28,7 +28,7 @@ function UserProfile() {
   const handleEndorse = async (values) => {
     const { email, msg } = values;
     try {
-      const result = await endorse(email, msg); // Send to first backend endpoint
+      const result = await endorse(email, msg);
       console.log(result);
     } catch {
       setError('Endorsement failed.');
@@ -39,10 +39,21 @@ function UserProfile() {
   const handleReferral = async (values) => {
     const { email1, email2 } = values;
     try {
-      const result = await refer(email1, email2); // Send to second backend endpoint
+      const result = await refer(email1, email2);
       console.log(result);
     } catch {
       setError('Referral failed.');
+    }
+  };
+
+  // Blacklist form handler (Form 3)
+  const handleBlacklist = async (values) => {
+    const { email } = values;
+    try {
+      const result = await blacklist(email);
+      console.log(result);
+    } catch {
+      setError('Blacklist failed.');
     }
   };
 
@@ -64,8 +75,8 @@ function UserProfile() {
 
   return (
     <div className="profile-container">
-      <h1>Your Profile</h1>
-      <Image src="https://via.placeholder.com/150" />
+      <h1>Your Resume</h1>
+      <Image src="https://parade.com/.image/t_share/MTk3MTYxNjA3ODYyNjkxMTM1/rachel-mcadams-dating-history-copy.jpg" />
       <h2>Name: {user.name}</h2>
       <p>Email: {user.email}</p>
       <p>Major: {user.major}</p>
@@ -78,7 +89,7 @@ function UserProfile() {
       <p>Referrals Remaining: {user.referralsRemaining}</p>
       <h1>Some Page</h1>
       <button type="submit" onClick={() => goToUserProfile(49486)}>Go to User 49468s Profile</button>
-      <button type="submit" onClick={() => goToNDA(49486, 49485)}>Go to NDA between 49486, 49485</button>
+      <button type="submit" onClick={() => goToNDA(49485, 49486)}>Go to NDA between 49486, 49485</button>
       {/* Form 1: Endorsement */}
       <h2>Endorse a User</h2>
       <Form layout="vertical" onFinish={handleEndorse}>
@@ -126,6 +137,23 @@ function UserProfile() {
         <Form.Item>
           <Button type="primary" htmlType="submit" loading={isLoading}>
             Send Referral
+          </Button>
+        </Form.Item>
+      </Form>
+
+      {/* Form 3: Blacklist */}
+      <h2>Blacklist an Applicant (you will not see them in your recruiting page or connections)</h2>
+      <Form layout="vertical" onFinish={handleBlacklist}>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: 'Please enter a valid dartmouth email' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" loading={isLoading}>
+            Officially Blacklist
           </Button>
         </Form.Item>
       </Form>

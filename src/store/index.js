@@ -198,6 +198,38 @@ const useStore = create(devtools(immer((set) => ({
     }
   },
 
+  sendMessage: async (msg, bUserID) => {
+    set((draft) => {
+      draft.isLoading = true;
+      draft.error = null;
+    });
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/sendMessage', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ msg, bUserID }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Email verification failed.');
+      }
+      set((draft) => {
+        draft.isLoading = false;
+      });
+      console.log(data);
+      return data;
+    } catch (error) {
+      set((draft) => {
+        draft.isLoading = false;
+        draft.error = error.message;
+      });
+      return { error: error.message };
+    }
+  },
+
   refer: async (email1, email2) => {
     set((draft) => {
       draft.isLoading = true;
@@ -215,6 +247,39 @@ const useStore = create(devtools(immer((set) => ({
       const data = await response.json();
       if (!response.ok) {
         throw new Error(data.error || 'Referral failed.');
+      }
+      set((draft) => {
+        draft.isLoading = false;
+      });
+      console.log(data);
+      return data;
+    } catch (error) {
+      set((draft) => {
+        draft.isLoading = false;
+        draft.error = error.message;
+      });
+      return { error: error.message };
+    }
+  },
+
+  blacklist: async (email) => {
+    set((draft) => {
+      draft.isLoading = true;
+      draft.error = null;
+    });
+    try {
+      console.log('attempting response fetch');
+      const response = await fetch('http://127.0.0.1:5000/api/blacklist', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Blacklist failed.');
       }
       set((draft) => {
         draft.isLoading = false;

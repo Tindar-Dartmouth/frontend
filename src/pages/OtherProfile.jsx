@@ -35,8 +35,8 @@ function OtherProfile() {
 
   return (
     <div className="profile-container">
-      <h1>Other Profile</h1>
-      <Image src="https://via.placeholder.com/150" />
+      <h1>{user.name}s Resume</h1>
+      <Image src="https://parade.com/.image/t_share/MTk3MTYxNjA3ODYyNjkxMTM1/rachel-mcadams-dating-history-copy.jpg" />
       <h2>Name: {user.name}</h2>
       <p>Email: {user.email}</p>
       <p>Major: {user.major}</p>

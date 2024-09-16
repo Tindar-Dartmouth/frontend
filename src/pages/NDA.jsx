@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import {
+  Form, Input, Button,
+} from 'antd';
 import useStore from '../store/index';
 import NavBar from '../components/NavBar';
 import '../style/UserProfileStyle.css';
@@ -7,13 +10,26 @@ import '../style/UserProfileStyle.css';
 function NDA() {
   const location = useLocation();
   const { selfUserID, bUserID } = location.state || {};
+  const { sendMessage } = useStore();
   const {
     getMessages,
     isLoading,
     error,
+    setError,
   } = useStore();
 
   const [messages, setMessages] = useState([]);
+
+  // Endorsement form handler
+  const handleSendMessage = async (values) => {
+    const { msg } = values;
+    try {
+      const result = await sendMessage(msg, bUserID);
+      console.log(result);
+    } catch {
+      setError('Endorsement failed.');
+    }
+  };
 
   // Fetch messages when the component mounts
   useEffect(() => {
@@ -41,7 +57,7 @@ function NDA() {
   return (
     <div className="profile-container">
       <h1>NON-DISCLOSURE AGREEMENT</h1>
-      <h2>Parties</h2>
+      <h2>PARTIES</h2>
       <p>
         This Non-Disclosure Agreement (hereinafter referred to as the Agreement) is entered into by and between
         PARTY1, with an address of EMAIL1, and tindar index of INDEX1 (hereinafter referred to as the Disclosing Party),
@@ -70,6 +86,21 @@ function NDA() {
         )}
       </ul>
       <NavBar />
+      <h2>Send a message</h2>
+      <Form layout="vertical" onFinish={handleSendMessage}>
+        <Form.Item
+          label="Enter msg"
+          name="msg"
+          rules={[{ required: true, message: 'Type here to send a message' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" loading={isLoading}>
+            Send
+          </Button>
+        </Form.Item>
+      </Form>
     </div>
   );
 }
