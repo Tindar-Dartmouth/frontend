@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   Image, Form, Input, Button,
 } from 'antd';
@@ -12,17 +11,6 @@ function UserProfile() {
   const {
     user, getProfile, isLoading, error, setError,
   } = useStore();
-
-  const navigate = useNavigate();
-  const goToUserProfile = (userID) => {
-    console.log('were here');
-    navigate('/otherProfile', { state: { userID } });
-  };
-
-  const goToNDA = (selfUserID, bUserID) => {
-    console.log('going to NDA now');
-    navigate('/nda', { state: { selfUserID, bUserID } });
-  };
 
   // Endorsement form handler (Form 1)
   const handleEndorse = async (values) => {
@@ -87,9 +75,6 @@ function UserProfile() {
       <p>Endorsements: {user.endorsements}</p>
       <p>Endorsements Remaining: {user.endorsementsRemaining}</p>
       <p>Referrals Remaining: {user.referralsRemaining}</p>
-      <h1>Some Page</h1>
-      <button type="submit" onClick={() => goToUserProfile(49486)}>Go to User 49468s Profile</button>
-      <button type="submit" onClick={() => goToNDA(49485, 49486)}>Go to NDA between 49486, 49485</button>
       {/* Form 1: Endorsement */}
       <h2>Endorse a User</h2>
       <Form layout="vertical" onFinish={handleEndorse}>
