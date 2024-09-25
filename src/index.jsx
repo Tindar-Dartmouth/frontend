@@ -6,11 +6,16 @@ import {
 } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import VerifyEmail1 from './pages/VerifyEmail1';
+import VerifyEmail2 from './pages/VerifyEmail2';
 import UserQuestions from './pages/UserQuestions';
 import Recruiting from './pages/Recruiting';
 import LandingPage from './pages/LandingPage';
-import Endorsements from './pages/Endorsements';
 import UserProfile from './pages/UserProfile';
+import OtherProfile from './pages/OtherProfile';
+import Leaderboard from './pages/Leaderboard';
+import Connections from './pages/Connections';
+import NDA from './pages/NDA';
 
 function Layout() {
   return (
@@ -41,10 +46,15 @@ const router = createBrowserRouter([
       { index: true, element: <LandingPage /> },
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Register /> },
+      { path: 'verifyEmail1', element: <VerifyEmail1 /> },
+      { path: 'verifyEmail2', element: <VerifyEmail2 /> },
       { path: 'user-questionnaire', element: <UserQuestions /> },
       { path: 'recruiting', element: <Recruiting /> },
-      { path: 'endorsements', element: <Endorsements /> },
+      { path: 'connections', element: <Connections /> },
+      { path: 'leaderboard', element: <Leaderboard /> },
       { path: 'profile', element: <UserProfile /> },
+      { path: 'otherProfile', element: <OtherProfile /> },
+      { path: 'nda', element: <NDA /> },
       { path: 'about', element: <About /> },
       { path: 'test/:id', element: <Test /> },
       { path: '*', element: <FallBack /> },

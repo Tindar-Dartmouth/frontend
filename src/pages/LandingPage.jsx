@@ -9,7 +9,7 @@ function LandingPage() {
   const navigate = useNavigate();
 
   const handleClickRegister = () => {
-    navigate('/register');
+    navigate('/verifyEmail1');
   };
 
   const handleClickLogin = () => {
