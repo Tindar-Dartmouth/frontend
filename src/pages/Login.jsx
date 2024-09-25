@@ -39,43 +39,57 @@ function Login() {
     }
   };
 
+  const handleRedirect = () => {
+    navigate('/register');
+    console.log('going to register');
+  };
+
   return (
     <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">
-            Email:
-            <input
-              type="email"
-              id="email"
-              name="email"
-              style={{ marginLeft: '14px', alignItems: 'center', justifyContent: 'center' }}
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
-          </label>
+      <div className="login-section">
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email">
+              Email
+              <input
+                type="email"
+                id="email"
+                name="email"
+                style={{ marginLeft: '14px', alignItems: 'center', justifyContent: 'center' }}
+                value={form.email}
+                onChange={handleChange}
+                placeholder="type your email"
+                required
+              />
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">
+              Password
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="type your password"
+                style={{ marginLeft: '14px', alignItems: 'center', justifyContent: 'center' }}
+                value={form.password}
+                onChange={handleChange}
+                required
+              />
+            </label>
+          </div>
+          {error && <p className="error">{error}</p>}
+          <button className="login-submit-button" disabled={isLoading} type="submit">
+            {isLoading ? 'Logging in...' : 'Login'}
+          </button>
+        </form>
+
+        <div className="direct-to-register">
+          <h3>Or Sign Here</h3>
+          <p onClick={handleRedirect}>Sign Up</p>
         </div>
-        <div className="form-group">
-          <label htmlFor="password">
-            Password:
-            <input
-              type="password"
-              id="password"
-              name="password"
-              style={{ marginLeft: '14px', alignItems: 'center', justifyContent: 'center' }}
-              value={form.password}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </div>
-        {error && <p className="error">{error}</p>}
-        <button className="login-submit-button" disabled={isLoading} type="submit">
-          {isLoading ? 'Logging in...' : 'Login'}
-        </button>
-      </form>
+      </div>
     </div>
   );
 }
