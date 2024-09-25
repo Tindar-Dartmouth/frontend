@@ -76,163 +76,163 @@ function Register() {
           onFinish={handleSubmit}
         >
           <Input />
-        </Form.Item>
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
-          hasFeedback
-        >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item
-          label="Confirm Password"
-          name="confirmPassword"
-          dependencies={['password']}
-          hasFeedback
-          rules={[
-            { required: true, message: 'Please confirm your password!' },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue('password') === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error('The two passwords do not match!'));
-              },
-            }),
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-        {error && <p className="error">{error}</p>}
-        {/* new additions */}
-        <Form.Item
-          label="Major" // Corrected label
-          name="major" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Minor" // Corrected label
-          name="minor" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="sex" // Corrected label
-          name="sex" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="pref sex ('m' 'f' or 'b')" // Corrected label
-          name="prefSex" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="GPA" // Corrected label
-          name="gpa" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Rice purity score" // Corrected label
-          name="ricePurity" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Skill1" // Corrected label
-          name="skill1" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Skill2" // Corrected label
-          name="skill2" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Skill3" // Corrected label
-          name="skill3" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Interest1" // Corrected label
-          name="interest1" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Interest2" // Corrected label
-          name="interest2" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Interest3" // Corrected label
-          name="interest3" // Ensure this matches the name used in your backend and store
-          rules={[
-            { required: true, message: 'Please input your major!' }, // Updated message
-            // Removed incorrect type validation
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        {/* end of new inputs */}
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={isLoading}>
-            Register
-          </Button>
-        </Form.Item>
-      </Form>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: 'Please input your password!' }]}
+            hasFeedback
+          >
+            <Input.Password />
+          </Form.Item>
+          <Form.Item
+            label="Confirm Password"
+            name="confirmPassword"
+            dependencies={['password']}
+            hasFeedback
+            rules={[
+              { required: true, message: 'Please confirm your password!' },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('The two passwords do not match!'));
+                },
+              }),
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
+          {error && <p className="error">{error}</p>}
+          {/* new additions */}
+          <Form.Item
+            label="Major" // Corrected label
+            name="major" // Ensure this matches the name used in your backend and store
+            rules={[
+              { required: true, message: 'Please input your major!' }, // Updated message
+              // Removed incorrect type validation
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Minor" // Corrected label
+            name="minor" // Ensure this matches the name used in your backend and store
+            rules={[
+              { required: true, message: 'Please input your major!' }, // Updated message
+              // Removed incorrect type validation
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="sex" // Corrected label
+            name="sex" // Ensure this matches the name used in your backend and store
+            rules={[
+              { required: true, message: 'Please input your major!' }, // Updated message
+              // Removed incorrect type validation
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="pref sex ('m' 'f' or 'b')" // Corrected label
+            name="prefSex" // Ensure this matches the name used in your backend and store
+            rules={[
+              { required: true, message: 'Please input your major!' }, // Updated message
+              // Removed incorrect type validation
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="GPA" // Corrected label
+            name="gpa" // Ensure this matches the name used in your backend and store
+            rules={[
+              { required: true, message: 'Please input your major!' }, // Updated message
+              // Removed incorrect type validation
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Rice purity score" // Corrected label
+            name="ricePurity" // Ensure this matches the name used in your backend and store
+            rules={[
+              { required: true, message: 'Please input your major!' }, // Updated message
+              // Removed incorrect type validation
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Skill1" // Corrected label
+            name="skill1" // Ensure this matches the name used in your backend and store
+            rules={[
+              { required: true, message: 'Please input your major!' }, // Updated message
+              // Removed incorrect type validation
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Skill2" // Corrected label
+            name="skill2" // Ensure this matches the name used in your backend and store
+            rules={[
+              { required: true, message: 'Please input your major!' }, // Updated message
+              // Removed incorrect type validation
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Skill3" // Corrected label
+            name="skill3" // Ensure this matches the name used in your backend and store
+            rules={[
+              { required: true, message: 'Please input your major!' }, // Updated message
+              // Removed incorrect type validation
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Interest1" // Corrected label
+            name="interest1" // Ensure this matches the name used in your backend and store
+            rules={[
+              { required: true, message: 'Please input your major!' }, // Updated message
+              // Removed incorrect type validation
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Interest2" // Corrected label
+            name="interest2" // Ensure this matches the name used in your backend and store
+            rules={[
+              { required: true, message: 'Please input your major!' }, // Updated message
+              // Removed incorrect type validation
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Interest3" // Corrected label
+            name="interest3" // Ensure this matches the name used in your backend and store
+            rules={[
+              { required: true, message: 'Please input your major!' }, // Updated message
+              // Removed incorrect type validation
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          {/* end of new inputs */}
+          <Form.Item>
+            <Button type="primary" htmlType="submit" loading={isLoading}>
+              Register
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   );
 }
