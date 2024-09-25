@@ -68,19 +68,12 @@ function Register() {
 
   return (
     <div className="register-container">
-      <h2>Register</h2>
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={handleSubmit}
-      >
-        <Form.Item
-          label="Dartmouth Email"
-          name="email"
-          rules={[
-            { required: true, message: 'Please input your Dartmouth email!' },
-            { type: 'email', message: 'Please enter a valid email!' },
-          ]}
+      <div className="register-section">
+        <h2>Register</h2>
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={handleSubmit}
         >
           <Input />
         </Form.Item>
