@@ -33,14 +33,14 @@ function VerifyEmail2() {
 
   return (
     <div className="register-container">
-      <h2>Verify Email 2</h2>
+      <h2>You Should Recieve an Email Shortly</h2>
       <Form
         form={form}
         layout="vertical"
         onFinish={handleSubmit}
       >
         <Form.Item
-          label="Email Key"
+          label="Verification Code"
           name="emailKey"
         >
           <Input />

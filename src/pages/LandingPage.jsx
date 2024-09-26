@@ -19,7 +19,8 @@ function LandingPage() {
   return (
     <div className="landing-page-container">
       <div className="landing-page-header">
-        <h1>Tindar</h1>
+        {/* <h1>Tindar</h1> */}
+        <img src="src/img/tindar_logo.png" alt="" />
         <h2>Strictly Business</h2>
       </div>
       <div className="register-login-buttons">

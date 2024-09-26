@@ -38,7 +38,7 @@ function VerifyEmail1() {
 
   return (
     <div className="register-container">
-      <h2>Verify Email 1</h2>
+      <h2>Enter Your Email to Get Started</h2>
       <Form
         form={form}
         layout="vertical"
@@ -48,15 +48,26 @@ function VerifyEmail1() {
           label="Dartmouth Email"
           name="email"
           rules={[
-            { required: true, message: 'Please input your Dartmouth email!' },
-            { type: 'email', message: 'Please enter a valid email!' },
+            {
+              required: true,
+              message: 'Please input your email!',
+            },
+            {
+              validator: (_, value) => {
+                const emailRegex = /^.*(24|25|26|27|28)@dartmouth\.edu$/;
+                if (!value || emailRegex.test(value)) {
+                  return Promise.resolve(); // Email is valid
+                }
+                return Promise.reject(new Error('You must use a valid dartmouth email, and class year must be between \'24 and \'28'));
+              },
+            },
           ]}
         >
           <Input />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" loading={isLoading}>
-            Get Verification Code.
+            Get Verification Code
           </Button>
         </Form.Item>
       </Form>

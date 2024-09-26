@@ -40,7 +40,7 @@ function Login() {
   };
 
   const handleRedirect = () => {
-    navigate('/register');
+    navigate('/verifyEmail1');
     console.log('going to register');
   };
 
