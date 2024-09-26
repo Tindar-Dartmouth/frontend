@@ -15,6 +15,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
     background: linear-gradient(to right top, #fa4756, #ef4a92);
+
 }
 .landing-page-container {
     -webkit-background-size: cover;

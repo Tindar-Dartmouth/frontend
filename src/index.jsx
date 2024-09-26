@@ -16,6 +16,7 @@ import OtherProfile from './pages/OtherProfile';
 import Leaderboard from './pages/Leaderboard';
 import Connections from './pages/Connections';
 import NDA from './pages/NDA';
+import Actions from './pages/Actions';
 
 function Layout() {
   return (
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
       { path: 'connections', element: <Connections /> },
       { path: 'leaderboard', element: <Leaderboard /> },
       { path: 'profile', element: <UserProfile /> },
+      { path: 'actions', element: <Actions /> },
       { path: 'otherProfile', element: <OtherProfile /> },
       { path: 'nda', element: <NDA /> },
       { path: 'about', element: <About /> },

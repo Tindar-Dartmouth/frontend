@@ -93,8 +93,8 @@ function SwipingCards({ data }) {
           />
         </div>
         <div className="buttons-container">
-          <Button onClick={() => handleSwipe('left')}>No</Button>
-          <Button onClick={() => handleSwipe('right')}>Yes</Button>
+          <Button onClick={() => handleSwipe('left')}>Rejection</Button>
+          <Button onClick={() => handleSwipe('right')}>Offer</Button>
         </div>
       </div>
     );
