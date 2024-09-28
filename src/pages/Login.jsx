@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import useStore from '../store/index'; // Import the zustand store
 import '../style/LoginStyle.css';
@@ -6,7 +7,7 @@ import '../style/LoginStyle.css';
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
   const {
-    login, isLoading, error, setError,
+    login, isLoading, error,
   } = useStore();
   const navigate = useNavigate();
 
@@ -17,25 +18,27 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const emailPattern = /\.26@dartmouth\.edu$/; // Regular expression to check the email pattern
-    if (!emailPattern.test(form.email)) {
-      setError('Email must end with .26@dartmouth.edu');
-      return;
-    }
+    // const emailPattern = /\.26@dartmouth\.edu$/; // Regular expression to check the email pattern
+    // if (!emailPattern.test(form.email)) {
+    //   setError('Email must end with .26@dartmouth.edu');
+    //   return;
+    // }
 
     try {
       console.log(form.email);
       console.log(form.password);
       const redirectUrl = await login(form.email, form.password); // Use the zustand login action
-      console.log(redirectUrl);
-      if (redirectUrl) {
+      console.log('redirectURL: ', redirectUrl);
+      if (redirectUrl.redirect) {
         // navigate(redirectUrl.redirect);
         navigate('/profile');
       } else {
-        setError('Invalid email or password');
+        message.error('Invalid email or password');
+        // setError('Invalid email or password');
       }
     } catch (error2) {
-      setError('Invalid email or password');
+      message.error('Invalid email or password');
+      // setError('Invalid email or password');
     }
   };
 
@@ -59,7 +62,7 @@ function Login() {
                 style={{ marginLeft: '14px', alignItems: 'center', justifyContent: 'center' }}
                 value={form.email}
                 onChange={handleChange}
-                placeholder="type your email"
+                placeholder="...@dartmouth.edu"
                 required
               />
             </label>
@@ -71,7 +74,7 @@ function Login() {
                 type="password"
                 id="password"
                 name="password"
-                placeholder="type your password"
+                placeholder=""
                 style={{ marginLeft: '14px', alignItems: 'center', justifyContent: 'center' }}
                 value={form.password}
                 onChange={handleChange}
@@ -84,10 +87,9 @@ function Login() {
             {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </form>
-
         <div className="direct-to-register">
-          <h3>Or Sign Here</h3>
-          <p onClick={handleRedirect}>Sign Up</p>
+          <h3>New user?</h3>
+          <p onClick={handleRedirect}>Sign Up Here</p>
         </div>
       </div>
     </div>

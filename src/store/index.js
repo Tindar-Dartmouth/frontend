@@ -50,7 +50,7 @@ const useStore = create(devtools(immer((set) => ({
     } catch (error) {
       set((draft) => {
         draft.isLoading = false;
-        draft.error = error.message;
+        draft.error = null;
       });
 
       return { error: error.message };// Return the error message to handle it in the frontend
@@ -77,15 +77,7 @@ const useStore = create(devtools(immer((set) => ({
     interest1,
     interest2,
     interest3,
-    noun1,
-    noun2,
-    noun3,
-    adj1,
-    adj2,
-    adj3,
-    verb1,
-    verb2,
-    verb3,
+    heightTotal,
   ) => {
     set((draft) => {
       draft.isLoading = true;
@@ -100,7 +92,7 @@ const useStore = create(devtools(immer((set) => ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email, password, major, minor, sex, prefSex, gpa, ricePurity, skill1, skill2, skill3, interest1, interest2, interest3, noun1, noun2, noun3, adj1, adj2, adj3, verb1, verb2, verb3,
+          email, password, major, minor, sex, prefSex, gpa, ricePurity, skill1, skill2, skill3, interest1, interest2, interest3, heightTotal,
         }),
       });
 
@@ -289,7 +281,7 @@ const useStore = create(devtools(immer((set) => ({
     } catch (error) {
       set((draft) => {
         draft.isLoading = false;
-        draft.error = error.message;
+        draft.error = null;
       });
       return { error: error.message };
     }

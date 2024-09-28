@@ -37,8 +37,6 @@ function UserProfile() {
       <p>Interests: {user.interests.join(', ')}</p>
       <p>Tindar Index: {user.tindarIndex}</p>
       <p>Endorsements: {user.endorsements}</p>
-      <p>Endorsements Remaining: {user.endorsementsRemaining}</p>
-      <p>Referrals Remaining: {user.referralsRemaining}</p>
 
       <NavBar />
     </div>

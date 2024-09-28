@@ -58,7 +58,6 @@ function Leaderboard() {
                   <p><strong>Interests:</strong> {user.interests?.[0] || 'N/A'}</p>
                   <p><strong>Skills:</strong> {user.skills?.[0] || 'N/A'}</p>
                   <p><strong>Tindar Index:</strong> {user.tindarIndex?.[0] || 'N/A'}</p>
-                  <p><strong>Blurb:</strong> {user.blurb?.[0] || 'N/A'}</p>
                   <p><strong>Endorsements:</strong> {user.endorsements?.map(([endorserId, comment], index) => (
                     <div key={comment}>
                       <span><strong>Endorser Name:</strong> {endorserId} </span>

@@ -29,12 +29,11 @@ function Register() {
       interest1,
       interest2,
       interest3,
+      heightFeet,
+      heightInches,
     } = values;
 
-    if (!email.endsWith('.26@dartmouth.edu')) {
-      setError('Email must end with .26@dartmouth.edu');
-      return;
-    }
+    const heightTotal = heightFeet * 12 + heightInches;
 
     if (password !== confirmPassword) {
       setError('Passwords do not match');
@@ -57,6 +56,7 @@ function Register() {
         interest1,
         interest2,
         interest3,
+        heightTotal,
       );
       if (result.message) {
         navigate('/recruiting'); // Redirect on successful registration
@@ -91,7 +91,7 @@ function Register() {
                   if (!value || emailRegex.test(value)) {
                     return Promise.resolve(); // Email is valid
                   }
-                  return Promise.reject(new Error('Email must be between 24 and 28 and end with @dartmouth.edu'));
+                  return Promise.reject(new Error('Grad year must be between 24 and 28 & email must end with @dartmouth.edu'));
                 },
               },
             ]}
@@ -147,6 +147,55 @@ function Register() {
           >
             <Input />
           </Form.Item>
+          {/* NEW SHIT */}
+          <Form.Item
+            label="Height"
+            required
+          >
+            <Input.Group compact>
+              <Form.Item
+                name="heightFeet"
+                noStyle
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input the feet!',
+                  },
+                  {
+                    validator: (_, value) => {
+                      if (value >= 3 && value <= 8) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(new Error('Feet must be between 1 and 8'));
+                    },
+                  },
+                ]}
+              >
+                <InputNumber min={1} max={8} placeholder="Feet" style={{ width: '50%' }} />
+              </Form.Item>
+              <Form.Item
+                name="heightInches"
+                noStyle
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input the inches!',
+                  },
+                  {
+                    validator: (_, value) => {
+                      if (value >= 0 && value <= 11) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(new Error('Inches must be between 0 and 11'));
+                    },
+                  },
+                ]}
+              >
+                <InputNumber min={0} max={11} placeholder="Inches" style={{ width: '50%' }} />
+              </Form.Item>
+            </Input.Group>
+          </Form.Item>
+          {/* NEW SHIT */}
           <Form.Item
             label="Gender" // Corrected label
             name="sex" // Ensure this matches the name used in your backend and store

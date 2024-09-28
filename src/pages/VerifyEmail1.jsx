@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, Input, Button } from 'antd';
+import {
+  Form, Input, Button, message,
+} from 'antd';
 import useStore from '../store/index'; // Import the zustand store
 import '../style/RegisterStyle.css';
 
@@ -14,11 +16,6 @@ function VerifyEmail1() {
     const {
       email,
     } = values;
-
-    if (!email.endsWith('.26@dartmouth.edu')) {
-      setError('Email must end with .26@dartmouth.edu');
-      return;
-    }
 
     try {
       const result = await verifyEmail1(
@@ -58,6 +55,7 @@ function VerifyEmail1() {
                 if (!value || emailRegex.test(value)) {
                   return Promise.resolve(); // Email is valid
                 }
+                message.error('You must use a valid Dartmouth email, and class year must be betweeb \'24 and \'28');
                 return Promise.reject(new Error('You must use a valid dartmouth email, and class year must be between \'24 and \'28'));
               },
             },

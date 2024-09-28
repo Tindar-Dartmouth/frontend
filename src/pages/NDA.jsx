@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
-  Form, Input, Button,
+  Form, Input, Button, message as antdMessage,
 } from 'antd';
 import useStore from '../store/index';
 import NavBar from '../components/NavBar';
@@ -26,6 +26,9 @@ function NDA() {
     try {
       const result = await sendMessage(msg, bUserID);
       console.log(result);
+      if (result.error) {
+        antdMessage.error('Ensure your message is void of profanity.');
+      }
     } catch {
       setError('Endorsement failed.');
     }
@@ -91,7 +94,18 @@ function NDA() {
         <Form.Item
           label="Enter msg"
           name="msg"
-          rules={[{ required: true, message: 'Type here to send a message' }]}
+          rules={[
+            {
+              required: true,
+              validator: (_, value) => {
+                if (!value) {
+                  antdMessage.error('Please enter a message');
+                  return Promise.reject();
+                }
+                return Promise.resolve();
+              },
+            },
+          ]}
         >
           <Input />
         </Form.Item>
