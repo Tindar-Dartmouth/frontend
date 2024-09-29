@@ -12,6 +12,8 @@
     width: 300px;
     transition: transform 0.5s ease-out, opacity 0.5s ease-out;
     margin-bottom: 20px; /* Add margin to separate from buttons */
+    background: white;
+    border: none;
   }
   
   .buttons-container {
@@ -20,6 +22,7 @@
     width: 200px;
     position: relative;
     z-index: 1;
+    margin-top: 20px;
   }
   
   .swipe-left {
@@ -66,13 +69,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.4); /* Black background with transparency */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.01));
     padding: 20px; /* Add padding for text */
     color: white; /* Text color */
   }
   
   .text-content {
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -89,5 +91,42 @@
     font-size: 1em;
   }
   
+  .tindar-index {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+  }
   
+  .dismiss-button {
+    width: 80px;
+    height: 33px;
+    background-color: black;
+    color: white;
+    font-family: "Varela Round", sans-serif;
+    border-radius: 8px;
+}
+.dismiss-button:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+.offer-button {
+  background-color: white;
+  color: black;
+  font-family: "Varela Round", sans-serif;
+  width: 80px;
+  height: 33px;
+  border-radius: 8px;
+}
+.offer-button:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
   

@@ -19,6 +19,8 @@ function Actions() {
       const result = await endorse(email, msg);
       if (result.error) {
         message.error('Ensure you have provided a message without profanity to an active user.');
+      } else {
+        message.success('Successful endorsement!');
       }
     } catch {
       message.error('Make sure to provide the email address of an active user of the application');
@@ -35,6 +37,8 @@ function Actions() {
       if (result.error) {
         message.error('Ensure you have provided two valid Dartmouth email addresses');
         message.error('These users might have already matched or rejected one another.');
+      } else {
+        message.success('Successful referral!');
       }
     } catch {
       message.error('Ensure you have provided two valid Dartmouth email addresses');
@@ -50,6 +54,8 @@ function Actions() {
       console.log(result);
       if (result.error) {
         message.error('Ensure you have provided the email of an active user');
+      } else {
+        message.success('Successful blacklist! You can no longer connect with that user.');
       }
     } catch {
       setError('Blacklist failed.');

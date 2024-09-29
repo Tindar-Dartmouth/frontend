@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Button } from 'antd';
+import { Card } from 'antd';
 import { useSwipeable } from 'react-swipeable';
 import NavBar from '../components/NavBar';
 import useStore from '../store/index'; // Import the zustand store
@@ -77,6 +77,9 @@ function SwipingCards({ data }) {
             cover={(
               <div className="image-container">
                 <img alt={data[currentIndex].name} src={data[currentIndex].image} className="card-image" />
+                <div className="tindar-index">
+                  {data[currentIndex].tindarIndex.toFixed(2)}
+                </div>
                 <div className="text-overlay">
                   <div className="text-content">
                     <span className="card-meta-title">{data[currentIndex].name}</span>
@@ -84,17 +87,17 @@ function SwipingCards({ data }) {
                     <div className="card-meta-subtitle">Minor: {data[currentIndex].minor}</div>
                     <div className="card-meta-subtitle">Skills: {data[currentIndex].skills.join(', ')}</div>
                     <div className="card-meta-subtitle">Interests: {data[currentIndex].interests.join(', ')}</div>
-                    <div className="card-meta-subtitle">Tindar Index: {data[currentIndex].tindarIndex}</div>
                   </div>
                 </div>
               </div>
             )}
             style={{ width: 300, margin: '0 auto', textAlign: 'center' }}
           />
+
         </div>
         <div className="buttons-container">
-          <Button onClick={() => handleSwipe('left')}>Dismiss</Button>
-          <Button onClick={() => handleSwipe('right')}>Offer</Button>
+          <button className="dismiss-button" type="button" onClick={() => handleSwipe('left')}>Dismiss</button>
+          <button className="offer-button" type="button" onClick={() => handleSwipe('right')}>Offer</button>
         </div>
       </div>
     );
@@ -159,7 +162,8 @@ function Recruiting() {
 
   return (
     <div className="recruiting-container">
-      <h2>Recruiting Page</h2>
+      {/* <h2>Recruiting Page</h2> */}
+      <img src="src/img/recruiting.png" alt="Recruiting Page" />
       {cards.length > 0 ? (
         <SwipingCards data={cards} />
       ) : (
