@@ -162,12 +162,12 @@ function Recruiting() {
 
   return (
     <div className="recruiting-container">
+      <img src="src/img/recruiting.png" alt="Recruiting Page" className="relative-top-image" />
       {/* <h2>Recruiting Page</h2> */}
-      <img src="src/img/recruiting.png" alt="Recruiting Page" />
       {cards.length > 0 ? (
         <SwipingCards data={cards} />
       ) : (
-        <p>No users found.</p>
+        <p>No applicants remaining. Check back soon!</p>
       )}
       <NavBar />
     </div>

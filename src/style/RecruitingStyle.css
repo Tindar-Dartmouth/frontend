@@ -95,12 +95,12 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-    padding: 5px 10px;
+    background-color: rgb(0, 0, 0); /* Semi-transparent background */
+    padding: 5px 5px;
     border: 1px solid black;
     border-radius: 4px;
     color: white;
-    font-weight: bold;
+    font-weight: 100;
   }
   
   .dismiss-button {
@@ -129,4 +129,3 @@
   color: white;
   cursor: pointer;
 }
-  
