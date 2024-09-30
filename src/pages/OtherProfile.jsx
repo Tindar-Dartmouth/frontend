@@ -22,7 +22,7 @@ function OtherProfile() {
   }, [userID, getOtherProfile]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div />;
   }
 
   if (error) {

@@ -42,7 +42,7 @@ function Leaderboard() {
     <div className="recruiting-container">
       <h2>Leaderboard of Most Endorsed Applicants</h2>
       {isLoading ? (
-        <p>Loading...</p>
+        <p />
       ) : (
         <ul>
           {Object.keys(users).length > 0 ? (

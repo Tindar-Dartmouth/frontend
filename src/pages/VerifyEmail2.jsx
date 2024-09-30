@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, Input, Button } from 'antd';
+import {
+  Form, Input, Button, message,
+} from 'antd';
 import useStore from '../store/index'; // Import the zustand store
-import '../style/RegisterStyle.css';
+import '../style/VerifyEmail1.css';
 
 function VerifyEmail2() {
   const [form] = Form.useForm();
@@ -24,6 +26,7 @@ function VerifyEmail2() {
         // navigate(redirectUrl.redirect);
         navigate('/register');
       } else {
+        message.error('Incorrect code.');
         setError('Incorrect Code.');
       }
     } catch {
@@ -33,24 +36,32 @@ function VerifyEmail2() {
 
   return (
     <div className="register-container">
-      <h2>You Should Recieve an Email Shortly</h2>
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={handleSubmit}
-      >
-        <Form.Item
-          label="Verification Code"
-          name="emailKey"
+      <div className="login-section">
+        <h2>You should recieve an email shortly.</h2>
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={handleSubmit}
         >
-          <Input />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={isLoading}>
-            Verify.
-          </Button>
-        </Form.Item>
-      </Form>
+          <Form.Item
+            label="Verification Code"
+            name="emailKey"
+            rules={[
+              {
+                required: true,
+                message: 'Input your verification code!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className="login-submit-button" loading={isLoading}>
+              Verify
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   );
 }

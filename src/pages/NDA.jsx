@@ -50,7 +50,7 @@ function NDA() {
   }, [selfUserID, bUserID, getMessages]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div />;
   }
 
   if (error) {

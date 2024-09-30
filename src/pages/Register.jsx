@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Form, Input, InputNumber, Button, Select,
+  Form, Input, InputNumber, Button, Select, message,
 } from 'antd';
 import useStore from '../store/index'; // Import the zustand store
 import '../style/RegisterStyle.css';
@@ -61,6 +61,8 @@ function Register() {
       if (result.message) {
         navigate('/recruiting'); // Redirect on successful registration
       } else {
+        message.error('Registration failed.');
+        message.error('Ensure that there is no profanity in your skills and interests, and that you obey the character limit.');
         setError('Registration failed. Please try again.');
       }
     } catch {

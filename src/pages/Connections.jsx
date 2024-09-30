@@ -103,7 +103,7 @@ function Connections() {
     <div className="connections-container">
       <h2>Connections Page</h2>
       {isLoading ? (
-        <p>Loading...</p>
+        <p />
       ) : (
         <div>
           <h3>Referral Matches</h3>

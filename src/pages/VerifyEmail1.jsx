@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Form, Input, Button, message,
+  Form, Input, Button,
 } from 'antd';
 import useStore from '../store/index'; // Import the zustand store
-import '../style/RegisterStyle.css';
+import '../style/VerifyEmail1.css';
 
 function VerifyEmail1() {
   const [form] = Form.useForm();
@@ -35,40 +35,42 @@ function VerifyEmail1() {
 
   return (
     <div className="register-container">
-      <h2>Enter Your Email to Get Started</h2>
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={handleSubmit}
-      >
-        <Form.Item
-          label="Dartmouth Email"
-          name="email"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your email!',
-            },
-            {
-              validator: (_, value) => {
-                const emailRegex = /^.*(24|25|26|27|28)@dartmouth\.edu$/;
-                if (!value || emailRegex.test(value)) {
-                  return Promise.resolve(); // Email is valid
-                }
-                message.error('You must use a valid Dartmouth email, and class year must be betweeb \'24 and \'28');
-                return Promise.reject(new Error('You must use a valid dartmouth email, and class year must be between \'24 and \'28'));
-              },
-            },
-          ]}
+      <div className="login-section">
+        <h2>Enter your email to get started.</h2>
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={handleSubmit}
         >
-          <Input />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={isLoading}>
-            Get Verification Code
-          </Button>
-        </Form.Item>
-      </Form>
+          <Form.Item
+            label="Dartmouth Email"
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your email!',
+              },
+              {
+                validator: (_, value) => {
+                  const emailRegex = /^.*(24|25|26|27|28)@dartmouth\.edu$/;
+                  if (!value || emailRegex.test(value)) {
+                    return Promise.resolve(); // Email is valid
+                  }
+                  // message.error('You must use a valid Dartmouth email, and class year must be between \'24 and \'28');
+                  return Promise.reject(new Error('You must use a valid dartmouth email, and class year must be between \'24 and \'28'));
+                },
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className="login-submit-button" loading={isLoading}>
+              Get Code
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   );
 }

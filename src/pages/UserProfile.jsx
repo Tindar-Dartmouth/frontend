@@ -14,7 +14,7 @@ function UserProfile() {
   }, [getProfile]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div />;
   }
 
   if (error) {
