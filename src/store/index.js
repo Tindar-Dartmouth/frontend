@@ -2,6 +2,8 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
+const serverPath = 'https://tindar-backend-8188efd22985.herokuapp.com';
+
 const useStore = create(devtools(immer((set) => ({
   user: null,
   isAuthenticated: false,
@@ -23,7 +25,7 @@ const useStore = create(devtools(immer((set) => ({
     });
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/login', {
+      const response = await fetch(`${serverPath}/api/login`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -85,7 +87,7 @@ const useStore = create(devtools(immer((set) => ({
     });
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/register', {
+      const response = await fetch(`${serverPath}/api/register`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -126,7 +128,7 @@ const useStore = create(devtools(immer((set) => ({
     });
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/verifyEmail-1', {
+      const response = await fetch(`${serverPath}/api/verifyEmail-1`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -164,7 +166,7 @@ const useStore = create(devtools(immer((set) => ({
       draft.error = null;
     });
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/endorse', {
+      const response = await fetch(`${serverPath}/api/endorse`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -196,7 +198,7 @@ const useStore = create(devtools(immer((set) => ({
       draft.error = null;
     });
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/sendMessage', {
+      const response = await fetch(`${serverPath}/api/sendMessage`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -228,7 +230,7 @@ const useStore = create(devtools(immer((set) => ({
       draft.error = null;
     });
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/refer', {
+      const response = await fetch(`${serverPath}/api/refer`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -261,7 +263,7 @@ const useStore = create(devtools(immer((set) => ({
     });
     try {
       console.log('attempting response fetch');
-      const response = await fetch('http://127.0.0.1:5000/api/blacklist', {
+      const response = await fetch(`${serverPath}/api/blacklist`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -296,7 +298,7 @@ const useStore = create(devtools(immer((set) => ({
     });
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/verifyEmail-2', {
+      const response = await fetch(`${serverPath}/api/verifyEmail-2`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -336,7 +338,7 @@ const useStore = create(devtools(immer((set) => ({
     });
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/userProfile', {
+      const response = await fetch(`${serverPath}/api/userProfile`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -376,7 +378,7 @@ const useStore = create(devtools(immer((set) => ({
     });
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/othprf', {
+      const response = await fetch(`${serverPath}/api/othprf`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -416,7 +418,7 @@ const useStore = create(devtools(immer((set) => ({
 
     try {
       console.log('trying');
-      const response = await fetch('http://127.0.0.1:5000/api/messaging', {
+      const response = await fetch(`${serverPath}/api/messaging`, {
         method: 'POST',
         credentials: 'include',
         headers: {

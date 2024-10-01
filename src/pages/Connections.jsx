@@ -19,9 +19,9 @@ function Connections() {
 
   const fetchUsers = async () => {
     setLoading(true);
-
+    const serverPath = 'https://tindar-backend-8188efd22985.herokuapp.com';
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/connections', {
+      const response = await fetch(`${serverPath}/api/connections`, {
         method: 'GET',
         credentials: 'include',
         mode: 'cors',

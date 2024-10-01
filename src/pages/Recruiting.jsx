@@ -14,8 +14,10 @@ function SwipingCards({ data }) {
   const handleSwipe = async (direction) => {
     setSwipeDirection(direction);
     // new code for post request
+    const serverPath = 'https://tindar-backend-8188efd22985.herokuapp.com';
+
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/recruiting', {
+      const response = await fetch(`${serverPath}/api/recruiting`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -108,12 +110,12 @@ function SwipingCards({ data }) {
 function Recruiting() {
   const [cards, setCards] = useState([]);
   const { setError, isLoading, setLoading } = useStore();
-
+  const serverPath = 'https://tindar-backend-8188efd22985.herokuapp.com';
   const fetchUsers = async () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/recruiting', {
+      const response = await fetch(`${serverPath}/api/recruiting`, {
         method: 'GET',
         credentials: 'include',
         mode: 'cors',
