@@ -80,7 +80,7 @@ function Actions() {
 
   return (
     <div className="profile-container">
-      <img src="src/img/actions.png" alt="Actions" className="relative-top-image" />
+      <img src="/actions.png" alt="Actions" className="relative-top-image" />
       {/* <h1>Actions for {user.name}</h1> */}
       <div className="login-section">
         <h2>Endorsements Remaining: {user.endorsementsRemaining}</h2>

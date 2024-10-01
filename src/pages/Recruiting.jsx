@@ -162,7 +162,7 @@ function Recruiting() {
 
   return (
     <div className="recruiting-container">
-      <img src="src/img/recruiting.png" alt="Recruiting Page" className="relative-top-image" />
+      <img src="/recruiting.png" alt="Recruiting Page" className="relative-top-image" />
       {/* <h2>Recruiting Page</h2> */}
       {cards.length > 0 ? (
         <SwipingCards data={cards} />
