@@ -57,7 +57,7 @@ function SwipingCards({ data }) {
   });
 
   if (data.length === 0) return <p>No data available</p>;
-  if (deckEmpty) return <p>Deck is empty</p>;
+  if (deckEmpty) return <p>No applicants remaining. Check back soon!</p>;
   else {
     return (
       <div className="recruiting-container">
@@ -84,7 +84,7 @@ function SwipingCards({ data }) {
                 </div>
                 <div className="text-overlay">
                   <div className="text-content">
-                    <span className="card-meta-title">{data[currentIndex].name}</span>
+                    <span className="card-meta-title">{data[currentIndex].name} &apos;{data[currentIndex].classYear.toString().slice(-2)}</span>
                     <div className="card-meta-subtitle">{data[currentIndex].major} & {data[currentIndex].minor}</div>
                     {/* <div className="card-meta-subtitle">Minor: </div> */}
                     <div className="card-meta-subtitle">Skills: {data[currentIndex].skills.join(', ')}</div>
@@ -131,6 +131,7 @@ function Recruiting() {
         // Transform the data into the format required by SwipingCards
         const transformedData = Object.keys(data).map((id) => {
           const user = data[id];
+          console.log('user info: ', user);
           return {
             id,
             name: user.name,
@@ -140,6 +141,8 @@ function Recruiting() {
             skills: user.skills?.[0] ? user.skills[0].split(',') : [], // Assuming skills are comma-separated
             interests: user.interests?.[0] ? user.interests[0].split(',') : [], // Assuming interests are comma-separated
             tindarIndex: user.tindarIndex?.[0] || 0,
+            classYear: user.classYear,
+            height: user.height,
           };
         });
         setCards(transformedData);
