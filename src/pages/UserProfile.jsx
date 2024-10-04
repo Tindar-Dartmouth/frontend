@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { Image } from 'antd';
-import useStore from '../store/index'; // Import the zustand store
+import useStore from '../store/index';
 import NavBar from '../components/NavBar';
 import '../style/UserProfileStyle.css';
 
@@ -26,18 +25,71 @@ function UserProfile() {
   }
 
   return (
-    <div className="profile-container">
-      <h1>Your Resume</h1>
-      <Image src="https://parade.com/.image/t_share/MTk3MTYxNjA3ODYyNjkxMTM1/rachel-mcadams-dating-history-copy.jpg" />
-      <h2>Name: {user.name}</h2>
-      <p>Email: {user.email}</p>
-      <p>Major: {user.major}</p>
-      <p>Minor: {user.minor}</p>
-      <p>Skills: {user.skills.join(', ')}</p>
-      <p>Interests: {user.interests.join(', ')}</p>
-      <p>Tindar Index: {user.tindarIndex}</p>
-      <p>Endorsements: {user.endorsements}</p>
+    <div>
+      <div className="resume">
+        <header className="resume-header">
+          <h1>{user.name}</h1>
+          <p><div className="intro"><a href="https://www.mapquest.com/us/new-hampshire/collis-market-433362678">2 N Main St. Hanover NH, 03755</a> • {user.email}</div></p>
+          <br />
+        </header>
 
+        <section className="resume-section">
+          <h3><div className="newH2">Education</div></h3>
+          <ul>
+            <li>
+              <strong>Dartmouth College</strong>, Hanover, NH
+              <br />
+              Bachelor of Arts, Major in {user.major}, Minor in {user.minor}
+              <br />
+              Calls of {user.classYear}
+            </li>
+          </ul>
+        </section>
+
+        <section className="resume-section">
+          <h3><div className="newH2">Endorsements</div></h3>
+          <ul>
+            <li>
+              <strong>Software Developer</strong> - Company Name, City, State
+              <br />
+              January 2023 - Present
+              <ul>
+                <li>Developed web applications using React and Node.js.</li>
+                <li>Collaborated with cross-functional teams to enhance user experience.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Intern</strong> - Another Company Name, City, State
+              <br />
+              June 2022 - December 2022
+              <ul>
+                <li>Assisted in developing backend services with Python and Flask.</li>
+                <li>Conducted testing and debugging of software applications.</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section className="resume-section">
+          <h3><div className="newH2">Skills ＆ Interests</div></h3>
+          <ul>
+            <p><strong>Skills:</strong> {user.skills}</p>
+            <p><strong>Interests:</strong> {user.interests}</p>
+          </ul>
+        </section>
+
+        <section className="resume-section">
+          <h3><div className="newH2">Analytics</div></h3>
+          <ul>
+            <li>
+              <strong>Portfolio Website</strong> - A personal portfolio website built with React.
+            </li>
+            <li>
+              <strong>Task Manager App</strong> - A task management application using Python and Flask.
+            </li>
+          </ul>
+        </section>
+      </div>
       <NavBar />
     </div>
   );

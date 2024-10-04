@@ -85,7 +85,7 @@ function SwipingCards({ data }) {
                 <div className="text-overlay">
                   <div className="text-content">
                     <span className="card-meta-title">{data[currentIndex].name} &apos;{data[currentIndex].classYear.toString().slice(-2)}</span>
-                    <div className="card-meta-subtitle">{data[currentIndex].major} & {data[currentIndex].minor}</div>
+                    <div className="card-meta-subtitle">{data[currentIndex].major} & {data[currentIndex].minor}, {data[currentIndex].height}</div>
                     {/* <div className="card-meta-subtitle">Minor: </div> */}
                     <div className="card-meta-subtitle">Skills: {data[currentIndex].skills.join(', ')}</div>
                     <div className="card-meta-subtitle">Interests: {data[currentIndex].interests.join(', ')}</div>
