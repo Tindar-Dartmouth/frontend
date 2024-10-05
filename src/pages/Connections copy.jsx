@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useStore from '../store/index'; // Import the zustand store
 import NavBar from '../components/NavBar';
-import '../style/connections.css';
 
 function Connections() {
   const [users, setUsers] = useState({ swipingMatches: [], referrals: [] });
@@ -61,22 +60,20 @@ function Connections() {
 
   const renderReferralMatches = () => {
     if (users.referrals.length === 0) {
-      return <p>Sorry, no referral matches yet.</p>;
+      return <p>No referral matches found.</p>;
     }
 
     return users.referrals.map(([key, referral]) => (
-      <div className="connect-box">
-        <li key={key}>
-          <h3>This match was referred by {key}</h3>
-          <p><strong>Name:</strong> {referral.name}</p>
-          <p><strong>Class Year:</strong> {referral.classYear}</p>
-          <p><strong>Major:</strong> {referral.major}</p>
-          <p><strong>Minor:</strong> {referral.minor}</p>
-          <p><strong>Tindar Index:</strong> {referral.tindarIndex}</p>
-          <button type="submit" onClick={() => goToUserProfile(referral.userID)}>Go to {referral.name}s full profile</button>
-          <button type="submit" onClick={() => goToNDA(referral.userID)}>Go to NDA between with {referral.name}</button>
-        </li>
-      </div>
+      <li key={key}>
+        <h3>This match was referred by {key}</h3>
+        <p><strong>Name:</strong> {referral.name}</p>
+        <p><strong>Class Year:</strong> {referral.classYear}</p>
+        <p><strong>Major:</strong> {referral.major}</p>
+        <p><strong>Minor:</strong> {referral.minor}</p>
+        <p><strong>Tindar Index:</strong> {referral.tindarIndex}</p>
+        <button type="submit" onClick={() => goToUserProfile(referral.userID)}>Go to {referral.name}s full profile</button>
+        <button type="submit" onClick={() => goToNDA(referral.userID)}>Go to NDA between with {referral.name}</button>
+      </li>
     ));
   };
 
@@ -85,50 +82,42 @@ function Connections() {
 
   const renderSwipingMatches = () => {
     if (users.swipingMatches.length === 0) {
-      return <p>Sorry, no swiping matches yet.</p>;
+      return <p>No swiping matches found.</p>;
     }
 
     return users.swipingMatches.map((match) => (
-      <div>
-        <div className="connect-box">
-          <li key={match.userID}>
-            <div className="inner-box" />
-            <p><strong>{match.name}</strong> &apos;{String(match.classYear).slice(-2)}</p>
-            <p>{match.major} & {match.minor}, {match.height}</p>
-            <p>{parseFloat(match.tindarIndex).toFixed(2)}</p>
-            <button type="submit" className="connect-button" onClick={() => goToUserProfile(match.userID)}>Resume</button>
-            <button type="submit" className="connect-button" onClick={() => goToNDA(match.userID)}>Non-Disclosure Agreement</button>
-          </li>
-        </div>
-        <br />
-      </div>
+      <li key={match.userID}>
+        <h3><strong>Profile</strong></h3>
+        <p><strong>Name:</strong> {match.name}</p>
+        <p><strong>Class Year:</strong> {match.classYear}</p>
+        <p><strong>Major:</strong> {match.major}</p>
+        <p><strong>Minor:</strong> {match.minor}</p>
+        <p><strong>Tindar Index:</strong> {match.tindarIndex}</p>
+        <button type="submit" onClick={() => goToUserProfile(match.userID)}>Go to {match.name}s full profile</button>
+        <button type="submit" onClick={() => goToNDA(match.userID)}>Go to NDA between with {match.name}</button>
+      </li>
     ));
   };
 
   return (
     <div className="connections-container">
-      <div className="gen">
-        <img src="/connections.png" alt="Recruiting Page" className="relative-top-image" />
-      </div>
-      <div className="connections-container">
-        {isLoading ? (
-          <p />
-        ) : (
-          <div>
-            <h3>Referrals</h3>
-            <ul>
-              {renderReferralMatches()}
-            </ul>
+      <h2>Connections Page</h2>
+      {isLoading ? (
+        <p />
+      ) : (
+        <div>
+          <h3>Referral Matches</h3>
+          <ul>
+            {renderReferralMatches()}
+          </ul>
 
-            <h3>Leads</h3>
-            <ul>
-              {renderSwipingMatches()}
-            </ul>
-          </div>
-        )}
-        <NavBar />
-      </div>
-      <br />
+          <h3>Swiping Matches</h3>
+          <ul>
+            {renderSwipingMatches()}
+          </ul>
+        </div>
+      )}
+      <NavBar />
     </div>
   );
 }

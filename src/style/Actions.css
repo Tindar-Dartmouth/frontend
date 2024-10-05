@@ -58,7 +58,8 @@ input {
 .login-submit-button:hover {
     background: lightblue;
 }
-.login-section {
+.login-actions-section {
+    width: 600px;
     justify-content: center;
     align-items: center;
     flex-direction: column;

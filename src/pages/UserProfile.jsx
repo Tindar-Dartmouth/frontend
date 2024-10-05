@@ -26,6 +26,9 @@ function UserProfile() {
 
   return (
     <div>
+      <div className="gen">
+        <img src="/resume.png" alt="Recruiting Page" className="relative-top-image" />
+      </div>
       <div className="resume">
         <header className="resume-header">
           <h1>{user.name}</h1>
@@ -41,7 +44,7 @@ function UserProfile() {
               <br />
               Bachelor of Arts, Major in {user.major}, Minor in {user.minor}
               <br />
-              Calls of {user.classYear}
+              Class of {user.classYear}
             </li>
           </ul>
         </section>
@@ -54,7 +57,7 @@ function UserProfile() {
               <br />
               January 2023 - Present
               <ul>
-                <li>Developed web applications using React and Node.js.</li>
+                <li><p>{user.endorsements}</p>Developed web applications using React and Node.js.</li>
                 <li>Collaborated with cross-functional teams to enhance user experience.</li>
               </ul>
             </li>
@@ -90,6 +93,7 @@ function UserProfile() {
           </ul>
         </section>
       </div>
+      <br /><br />
       <NavBar />
     </div>
   );

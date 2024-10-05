@@ -1,0 +1,48 @@
+.connections-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+.connect-box {
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    display: flex;
+    background-color: white;
+    z-index: 1000;
+    padding-left: 4%;
+    padding-right: 7%;
+    padding-top: 4%;
+    padding-bottom: 6%;
+    box-shadow: 0 8px 16px 0;
+    width: 800px;
+}
+.inner-box {
+    background-color: black; /* Smaller box color */
+    width: 250px; /* Width of the smaller box */
+    height: 250px; /* Height of the smaller box */
+    float: left; /* This makes the smaller box float to the left */
+    margin-right: 10px; /* Space between the smaller box and the text */
+}  
+.text-content {
+    overflow: hidden; /* Clear the float so the text wraps properly */
+}
+.connect-button {
+    background: linear-gradient(to right top, #fa4756, #ef4a92);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    width: 200px;
+    height: 30px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.connect-button:hover {
+    background: lightblue;
+}
