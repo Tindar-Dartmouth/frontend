@@ -21,8 +21,27 @@
     box-shadow: 0 8px 16px 0;
     width: 800px;
 }
+.intro-box {
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    display: flex;
+    background-color: white;
+    z-index: 1000;
+    padding-left: 4%;
+    padding-right: 7%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    box-shadow: 0 8px 16px 0;
+    margin-bottom: 10px;
+    width: 800px;
+    height: 50px;
+}
+.black {
+    color: black;
+}
 .inner-box {
-    background-color: black; /* Smaller box color */
+    background-color: #ef4a92; /* Smaller box color */
     width: 250px; /* Width of the smaller box */
     height: 250px; /* Height of the smaller box */
     float: left; /* This makes the smaller box float to the left */
@@ -45,4 +64,10 @@
 }
 .connect-button:hover {
     background: lightblue;
+}
+.button-cont {
+display: flex;
+  justify-content: space-between;
+  align-items: right; /* Optional: to vertically align the button in the center */
+  height: 100%; /* Adjust based on your layout */
 }

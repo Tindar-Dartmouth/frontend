@@ -51,26 +51,18 @@ function UserProfile() {
 
         <section className="resume-section">
           <h3><div className="newH2">Endorsements</div></h3>
-          <ul>
-            <li>
-              <strong>Software Developer</strong> - Company Name, City, State
-              <br />
-              January 2023 - Present
-              <ul>
-                <li><p>{user.endorsements}</p>Developed web applications using React and Node.js.</li>
-                <li>Collaborated with cross-functional teams to enhance user experience.</li>
-              </ul>
-            </li>
-            <li>
-              <strong>Intern</strong> - Another Company Name, City, State
-              <br />
-              June 2022 - December 2022
-              <ul>
-                <li>Assisted in developing backend services with Python and Flask.</li>
-                <li>Conducted testing and debugging of software applications.</li>
-              </ul>
-            </li>
-          </ul>
+          {user.endorsements && user.endorsements.length > 0 ? (
+            user.endorsements.map(([endorserId, comment], indexr) => (
+              <div key={comment}>
+                <span><strong>{endorserId}, Student at Dartmouth College</strong></span>
+                <div className="endorsement-text">
+                  <em>&quot;{comment}&quot;</em>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No endorsements yet.</p>
+          )}
         </section>
 
         <section className="resume-section">

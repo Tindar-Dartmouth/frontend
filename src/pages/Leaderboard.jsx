@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import useStore from '../store/index'; // Import the zustand store
+import '../style/Leaderboard.css';
 
 function Leaderboard() {
   const [users, setUsers] = useState({});
@@ -39,33 +40,28 @@ function Leaderboard() {
   }, []);
 
   return (
-    <div className="recruiting-container">
-      <h2>Leaderboard of Most Endorsed Applicants</h2>
+    <div className="leaderboard-container">
+      <h2><div className="intro-font">Leaderboard of the Most Endorsed Applicants</div></h2>
       {isLoading ? (
         <p />
       ) : (
-        <ul>
+        <ul className="leaderboard-list">
           {Object.keys(users).length > 0 ? (
-            Object.keys(users).map((id) => {
+            Object.keys(users).map((id, index) => {
               const user = users[id];
               return (
-                <li key={id}>
-                  <h3>{user.name}</h3>
-                  <p><strong>Email:</strong> {user.email}</p>
-                  <p><strong>Class Year:</strong> {user.classYear}</p>
-                  <p><strong>Major:</strong> {user.major?.[0] || 'N/A'}</p>
-                  <p><strong>Minor:</strong> {user.minor?.[0] || 'N/A'}</p>
-                  <p><strong>Interests:</strong> {user.interests?.[0] || 'N/A'}</p>
-                  <p><strong>Skills:</strong> {user.skills?.[0] || 'N/A'}</p>
-                  <p><strong>Tindar Index:</strong> {user.tindarIndex?.[0] || 'N/A'}</p>
-                  <p><strong>Endorsements:</strong> {user.endorsements?.map(([endorserId, comment], index) => (
-                    <div key={comment}>
-                      <span><strong>Endorser Name:</strong> {endorserId} </span>
-                      <div> </div>
-                      <span><strong>Comment:</strong> {comment}</span>
+                <li key={id} className="leaderboard-item">
+                  <div className="rank-box">
+                    <span className="rank-number">#{index + 1}</span>
+                  </div>
+                  <div className="profile-box">
+                    <div className="photo-box">{/* Photo will go here */}</div>
+                    <div className="profile-info">
+                      <h3>{user.name}, &apos;{String(user.classYear).slice(-2)}</h3>
+                      <p><strong>Tindar Index:</strong> {user.tindarIndex?.[0] || 'N/A'}</p>
+                      <p>{user.major?.[0] || 'N/A'} & {user.minor?.[0] || 'N/A'}</p>
                     </div>
-                  )) || 'N/A'}
-                  </p>
+                  </div>
                 </li>
               );
             })

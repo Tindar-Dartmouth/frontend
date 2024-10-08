@@ -61,21 +61,23 @@ function Connections() {
 
   const renderReferralMatches = () => {
     if (users.referrals.length === 0) {
-      return <p>Sorry, no referral matches yet.</p>;
+      return <p><strong><div className="black">Sorry, no referrals yet.</div></strong></p>;
     }
 
     return users.referrals.map(([key, referral]) => (
-      <div className="connect-box">
-        <li key={key}>
-          <h3>This match was referred by {key}</h3>
-          <p><strong>Name:</strong> {referral.name}</p>
-          <p><strong>Class Year:</strong> {referral.classYear}</p>
-          <p><strong>Major:</strong> {referral.major}</p>
-          <p><strong>Minor:</strong> {referral.minor}</p>
-          <p><strong>Tindar Index:</strong> {referral.tindarIndex}</p>
-          <button type="submit" onClick={() => goToUserProfile(referral.userID)}>Go to {referral.name}s full profile</button>
-          <button type="submit" onClick={() => goToNDA(referral.userID)}>Go to NDA between with {referral.name}</button>
-        </li>
+      <div>
+        <div className="connect-box">
+          <li key={key}>
+            <h3>This match was referred by {key}</h3>
+            <p><strong>Name:</strong> {referral.name}</p>
+            <p><strong>Class Year:</strong> {referral.classYear}</p>
+            <p><strong>Major:</strong> {referral.major}</p>
+            <p><strong>Minor:</strong> {referral.minor}</p>
+            <p><strong>Tindar Index:</strong> {referral.tindarIndex}</p>
+            <button type="submit" onClick={() => goToUserProfile(referral.userID)}>Go to {referral.name}s full profile</button>
+            <button type="submit" onClick={() => goToNDA(referral.userID)}>Go to NDA between with {referral.name}</button>
+          </li>
+        </div>
       </div>
     ));
   };
@@ -85,7 +87,7 @@ function Connections() {
 
   const renderSwipingMatches = () => {
     if (users.swipingMatches.length === 0) {
-      return <p>Sorry, no swiping matches yet.</p>;
+      return <p>Sorry, no leads yet.</p>;
     }
 
     return users.swipingMatches.map((match) => (
@@ -93,11 +95,14 @@ function Connections() {
         <div className="connect-box">
           <li key={match.userID}>
             <div className="inner-box" />
-            <p><strong>{match.name}</strong> &apos;{String(match.classYear).slice(-2)}</p>
+            <p><strong>{match.name} &apos;{String(match.classYear).slice(-2)} </strong></p>
             <p>{match.major} & {match.minor}, {match.height}</p>
             <p>{parseFloat(match.tindarIndex).toFixed(2)}</p>
-            <button type="submit" className="connect-button" onClick={() => goToUserProfile(match.userID)}>Resume</button>
-            <button type="submit" className="connect-button" onClick={() => goToNDA(match.userID)}>Non-Disclosure Agreement</button>
+            <br />
+            <div className="button-cont">
+              <button type="submit" className="connect-button" onClick={() => goToUserProfile(match.userID)}>Resume</button>
+              <button type="submit" className="connect-button" onClick={() => goToNDA(match.userID)}>Non-Disclosure Agreement</button>
+            </div>
           </li>
         </div>
         <br />
@@ -110,17 +115,23 @@ function Connections() {
       <div className="gen">
         <img src="/connections.png" alt="Recruiting Page" className="relative-top-image" />
       </div>
+      <br />
       <div className="connections-container">
         {isLoading ? (
           <p />
         ) : (
           <div>
-            <h3>Referrals</h3>
+            <div className="intro-box">
+              <strong>Referrals</strong>
+            </div>
             <ul>
               {renderReferralMatches()}
             </ul>
+            <br />
 
-            <h3>Leads</h3>
+            <div className="intro-box">
+              <strong>Leads</strong>
+            </div>
             <ul>
               {renderSwipingMatches()}
             </ul>
