@@ -101,7 +101,7 @@ function NDA() {
         </div>
         <br />
         <div className="smaller-nda-section">
-          <h2>Send a message</h2><br />
+          <h2>Send a message</h2>
           <Form layout="vertical" onFinish={handleSendMessage}>
             <Form.Item
               label="Enter msg"

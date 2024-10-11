@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+// import parse from 'html-react-parser';
 import useStore from '../store/index';
 import NavBar from '../components/NavBar';
 import '../style/UserProfileStyle.css';
@@ -35,12 +36,12 @@ function UserProfile() {
           <p><div className="intro"><a href="https://www.mapquest.com/us/new-hampshire/collis-market-433362678">2 N Main St. Hanover NH, 03755</a> • {user.email}</div></p>
           <br />
         </header>
-
         <section className="resume-section">
           <h3><div className="newH2">Education</div></h3>
           <ul>
             <li>
-              <strong>Dartmouth College</strong>, Hanover, NH
+              <strong>Dartmouth College</strong>, Hanover, NH <br />
+              Tindar Index: <strong> {Number(user.tindarIndex || 0).toFixed(2)} / 100.00</strong>  Height: <strong>{user.height} / 6&apos;0&quot; </strong>
               <br />
               Bachelor of Arts, Major in {user.major}, Minor in {user.minor}
               <br />
@@ -73,17 +74,6 @@ function UserProfile() {
           </ul>
         </section>
 
-        <section className="resume-section">
-          <h3><div className="newH2">Analytics</div></h3>
-          <ul>
-            <li>
-              <strong>Portfolio Website</strong> - A personal portfolio website built with React.
-            </li>
-            <li>
-              <strong>Task Manager App</strong> - A task management application using Python and Flask.
-            </li>
-          </ul>
-        </section>
       </div>
       <br /><br />
       <NavBar />

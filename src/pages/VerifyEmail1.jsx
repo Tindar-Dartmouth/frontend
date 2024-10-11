@@ -52,12 +52,12 @@ function VerifyEmail1() {
               },
               {
                 validator: (_, value) => {
-                  const emailRegex = /^.*(24|25|26|27|28)@dartmouth\.edu$/;
+                  const emailRegex = /^.*(25|26|27|28)@dartmouth\.edu$/;
                   if (!value || emailRegex.test(value)) {
                     return Promise.resolve(); // Email is valid
                   }
                   // message.error('You must use a valid Dartmouth email, and class year must be between \'24 and \'28');
-                  return Promise.reject(new Error('You must use a valid dartmouth email, and class year must be between \'24 and \'28'));
+                  return Promise.reject(new Error('You must use a valid dartmouth email, and grad year must be between \'25 and \'28'));
                 },
               },
             ]}

@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
-const serverPath = 'https://tindar-backend-8188efd22985.herokuapp.com';
+const serverPath = 'http://127.0.0.1:5000';
 
 const useStore = create(devtools(immer((set) => ({
   user: null,
@@ -64,58 +64,29 @@ const useStore = create(devtools(immer((set) => ({
     draft.isAuthenticated = false;
   }),
 
-  register: async (
-    email,
-    password,
-    major,
-    minor,
-    sex,
-    prefSex,
-    gpa,
-    ricePurity,
-    skill1,
-    skill2,
-    skill3,
-    interest1,
-    interest2,
-    interest3,
-    heightTotal,
-  ) => {
-    set((draft) => {
-      draft.isLoading = true;
-      draft.error = null;
-    });
-
+  register: async (formData) => {
     try {
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+      }
       const response = await fetch(`${serverPath}/api/register`, {
         method: 'POST',
         credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email, password, major, minor, sex, prefSex, gpa, ricePurity, skill1, skill2, skill3, interest1, interest2, interest3, heightTotal,
-        }),
+        body: formData,
       });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        set((draft) => {
-          draft.isLoading = false;
-        });
-        console.log(data);
-        return data;
+      console.log(response);
+      let data = {};
+      if (!response.ok) {
+        data = { error: response.status };
+        return data; // Return the data from the response (e.g., user info, tokens, etc.)
       } else {
-        throw new Error(data.error || 'Registration failed');
+        data = await response.json(); // Parse the JSON response
       }
+      console.log('the data: ', data);
+      return data; // Return the data from the response (e.g., user info, tokens, etc.)
     } catch (error) {
-      set((draft) => {
-        draft.isLoading = false;
-        draft.error = error.message;
-      });
-
-      return { error: error.message };
+      console.error('Error during registration:', error);
+      throw error; // Rethrow the error for further handling
     }
   },
 

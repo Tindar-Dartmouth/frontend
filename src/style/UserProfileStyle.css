@@ -55,3 +55,10 @@ strong {
   /* background-color: #f5f5f5; */
   box-shadow: 0 0 30px rgba(0, 0, 0, 1);
 }
+#fig_el3962659884733927509353106 {
+  display: block !important;      /* Ensure the element is displayed */
+  visibility: visible !important; /* Ensure the element is visible */
+  opacity: 1;         /* Ensure the element is fully opaque */
+  width: 1000px;      /* Set desired width */
+  height: 600px;      /* Set desired height */
+}

@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Form, Input, InputNumber, Button, Select, message,
+  Form, Input, InputNumber, Button, Select, message, Upload,
 } from 'antd';
-import useStore from '../store/index'; // Import the zustand store
+import { UploadOutlined } from '@ant-design/icons';
+import useStore from '../store/index';
 import '../style/RegisterStyle.css';
 
 function Register() {
   const [form] = Form.useForm();
   const [error, setError] = useState('');
+  const [file, setFile] = useState(null);
   const { register, isLoading } = useStore();
   const navigate = useNavigate();
+
+  const handleFileChange = (info) => {
+    const uploadedFile = info.file;
+    setFile(uploadedFile); // Store the file in state
+  };
 
   const handleSubmit = async (values) => {
     const {
@@ -32,37 +39,44 @@ function Register() {
       heightFeet,
       heightInches,
     } = values;
-
-    const heightTotal = heightFeet * 12 + heightInches;
+    console.log('captuered values: ', values);
+    const heightTotal = `${heightFeet}'${heightInches}"`;
 
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
 
+    console.log('File: ', file);
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('major', major);
+    formData.append('minor', minor);
+    formData.append('sex', sex);
+    formData.append('prefSex', prefSex);
+    formData.append('gpa', gpa);
+    formData.append('ricePurity', ricePurity);
+    formData.append('skill1', skill1);
+    formData.append('skill2', skill2);
+    formData.append('skill3', skill3);
+    formData.append('interest1', interest1);
+    formData.append('interest2', interest2);
+    formData.append('interest3', interest3);
+    formData.append('height', heightTotal);
+
+    if (file) {
+      formData.append('photo', file); // Add the file to the form data
+    }
     try {
-      const result = await register(
-        email,
-        password,
-        major,
-        minor,
-        sex,
-        prefSex,
-        gpa,
-        ricePurity,
-        skill1,
-        skill2,
-        skill3,
-        interest1,
-        interest2,
-        interest3,
-        heightTotal,
-      );
+      console.log('Form Data Before API call: ', Object.fromEntries(formData.entries()));
+      // const formDataObject = Object.fromEntries(formData.entries());
+      const result = await register(formData); // Modify to send FormData
+      console.log('lets see the result: ', result);
       if (result.message) {
         navigate('/recruiting'); // Redirect on successful registration
       } else {
-        message.error('Registration failed.');
-        message.error('Ensure that there is no profanity in your skills and interests, and that you obey the character limit.');
+        message.error('Ensure you have not already registered, and that there is no profanity in your responses.');
         setError('Registration failed. Please try again.');
       }
     } catch {
@@ -89,11 +103,11 @@ function Register() {
               },
               {
                 validator: (_, value) => {
-                  const emailRegex = /^.*(24|25|26|27|28)@dartmouth\.edu$/;
+                  const emailRegex = /^.*(25|26|27|28)@dartmouth\.edu$/;
                   if (!value || emailRegex.test(value)) {
                     return Promise.resolve(); // Email is valid
                   }
-                  return Promise.reject(new Error('Grad year must be between 24 and 28 & email must end with @dartmouth.edu'));
+                  return Promise.reject(new Error('Grad year must be between 25 and 28 & email must end with @dartmouth.edu'));
                 },
               },
             ]}
@@ -469,6 +483,18 @@ function Register() {
             ]}
           >
             <Input />
+          </Form.Item>
+          {/* File Upload */}
+          <Form.Item label="Upload Headshot">
+            <Upload
+              accept="image/*"
+              beforeUpload={() => false}
+              onChange={handleFileChange}
+              showUploadList={false}
+            >
+              <Button icon={<UploadOutlined />}>Select File</Button>
+            </Upload>
+            {file && <h4>File: {file.name}</h4>} {/* Show selected file name */}
           </Form.Item>
           {/* end of new inputs */}
           <Form.Item>

@@ -48,7 +48,8 @@ function OtherProfile() {
           <h3><div className="newH2">Education</div></h3>
           <ul>
             <li>
-              <strong>Dartmouth College</strong>, Hanover, NH
+              <strong>Dartmouth College</strong>, Hanover, NH <br />
+              Tindar Index: <strong> {Number(user.tindarIndex || 0).toFixed(2)} / 100.00</strong>  Height: <strong>{user.height} / 6&apos;0&quot; </strong>
               <br />
               Bachelor of Arts, Major in {user.major}, Minor in {user.minor}
               <br />
@@ -81,17 +82,6 @@ function OtherProfile() {
           </ul>
         </section>
 
-        <section className="resume-section">
-          <h3><div className="newH2">Analytics</div></h3>
-          <ul>
-            <li>
-              <strong>Portfolio Website</strong> - A personal portfolio website built with React.
-            </li>
-            <li>
-              <strong>Task Manager App</strong> - A task management application using Python and Flask.
-            </li>
-          </ul>
-        </section>
       </div>
       <br /><br />
       <NavBar />

@@ -20,7 +20,7 @@ function Connections() {
 
   const fetchUsers = async () => {
     setLoading(true);
-    const serverPath = 'https://tindar-backend-8188efd22985.herokuapp.com';
+    const serverPath = 'http://127.0.0.1:5000';
     try {
       const response = await fetch(`${serverPath}/api/connections`, {
         method: 'GET',
@@ -61,7 +61,7 @@ function Connections() {
 
   const renderReferralMatches = () => {
     if (users.referrals.length === 0) {
-      return <p><strong><div className="black">Sorry, no referrals yet.</div></strong></p>;
+      return <h2><strong><div className="black">Sorry, no referrals yet.</div></strong></h2>;
     }
 
     return users.referrals.map(([key, referral]) => (
@@ -87,7 +87,7 @@ function Connections() {
 
   const renderSwipingMatches = () => {
     if (users.swipingMatches.length === 0) {
-      return <p>Sorry, no leads yet.</p>;
+      return <h2><strong><div className="black">Sorry, no leads yet.</div></strong></h2>;
     }
 
     return users.swipingMatches.map((match) => (
