@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import parse from 'html-react-parser';
+import { Img } from 'react-image';
 import useStore from '../store/index';
 import NavBar from '../components/NavBar';
 import '../style/UserProfileStyle.css';
@@ -64,6 +64,10 @@ function UserProfile() {
           ) : (
             <p>No endorsements yet.</p>
           )}
+          <Img
+            src="https://drive.google.com/uc?export=view&id=1MbB7MCA3f51poZWO_YnK094PiK1d4RmL"
+            loader={<div>Loading...</div>}
+          />
         </section>
 
         <section className="resume-section">
@@ -73,7 +77,10 @@ function UserProfile() {
             <p><strong>Interests:</strong> {user.interests}</p>
           </ul>
         </section>
-
+        <img alt="" src="https://drive.google.com/thumbnail?id=1PMcGxuCNxdPXjIpGNu1dmRIftzv0l9OL" />
+        <img alt="" src="https://drive.google.com/thumbnail?id=17fTjvpIF7vn6RZf28TvzD_xaNETI2zO6" />
+        <img alt="pete" src="https://lh3.googleusercontent.com/d/1MbB7MCA3f51poZWO_YnK094PiK1d4RmL=s220?authuser=0" />
+        <img alt="" src="https://lh3.googleusercontent.com/d/1MbB7MCA3f51poZWO_YnK094PiK1d4RmL=s300?authuser=0" />
       </div>
       <br /><br />
       <NavBar />

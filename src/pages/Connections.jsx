@@ -68,6 +68,9 @@ function Connections() {
       <div>
         <div className="connect-box">
           <li key={key}>
+            <div className="inner=box">
+              <img alt="" src="https://drive.google.com/thumbnail?id=1PMcGxuCNxdPXjIpGNu1dmRIftzv0l9OL" />
+            </div>
             <h3>This match was referred by {key}</h3>
             <p><strong>Name:</strong> {referral.name}</p>
             <p><strong>Class Year:</strong> {referral.classYear}</p>
@@ -89,12 +92,13 @@ function Connections() {
     if (users.swipingMatches.length === 0) {
       return <h2><strong><div className="black">Sorry, no leads yet.</div></strong></h2>;
     }
-
     return users.swipingMatches.map((match) => (
       <div>
         <div className="connect-box">
           <li key={match.userID}>
-            <div className="inner-box" />
+            <div className="inner-box">
+              <img alt="" src={`https://drive.google.com/thumbnail?id=${match.photoID}`} />
+            </div>
             <p><strong>{match.name} &apos;{String(match.classYear).slice(-2)} </strong></p>
             <p>{match.major} & {match.minor}, {match.height}</p>
             <p>{parseFloat(match.tindarIndex).toFixed(2)}</p>

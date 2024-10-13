@@ -55,13 +55,16 @@ function Leaderboard() {
           {Object.keys(users).length > 0 ? (
             Object.keys(users).map((id, index) => {
               const user = users[id];
+              const imgUrl = `https://drive.google.com/thumbnail?id=${user.photoID}`;
               return (
                 <li key={id} className="leaderboard-item">
                   <div className="rank-box">
                     <span className="rank-number">#{index + 1}</span>
                   </div>
                   <div className="profile-box">
-                    <div className="photo-box">{/* Photo will go here */}</div>
+                    <div className="photo-box">
+                      <img alt="" src={imgUrl} />
+                    </div>
                     <div className="profile-info">
                       <h3>{user.name} &apos;{String(user.classYear).slice(-2)}</h3>
                       <p>{user.major?.[0] || 'N/A'} & {user.minor?.[0] || 'N/A'}</p><br /><br />

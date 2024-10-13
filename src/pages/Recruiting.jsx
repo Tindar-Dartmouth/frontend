@@ -127,15 +127,15 @@ function Recruiting() {
       const data = await response.json();
       if (response.ok) {
         console.log('Response was okay.');
-
         // Transform the data into the format required by SwipingCards
         const transformedData = Object.keys(data).map((id) => {
           const user = data[id];
+          const photoURL = `https://drive.google.com/thumbnail?id=${user.photoID}`;
           console.log('user info: ', user);
           return {
             id,
             name: user.name,
-            image: user.image || 'https://via.placeholder.com/150', // Default image if not provided
+            image: user.image || photoURL, // Default image if not provided
             major: user.major?.[0] || 'N/A',
             minor: user.minor?.[0] || 'N/A',
             skills: user.skills?.[0] ? user.skills[0].split(',') : [], // Assuming skills are comma-separated
