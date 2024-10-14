@@ -41,12 +41,20 @@
     color: black;
 }
 .inner-box {
-    background-color: #ef4a92; /* Smaller box color */
-    width: 250px; /* Width of the smaller box */
-    height: 250px; /* Height of the smaller box */
-    float: left; /* This makes the smaller box float to the left */
-    margin-right: 10px; /* Space between the smaller box and the text */
-}  
+    overflow: hidden;
+    background-color: #ef4a92;
+    width: 250px;
+    height: 250px;
+    /* align-items: center; */
+    /* border-radius: 3%; */
+    float: left;
+    margin-right: 10px;
+}
+.inner-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .text-content {
     overflow: hidden; /* Clear the float so the text wraps properly */
 }

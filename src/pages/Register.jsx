@@ -217,7 +217,6 @@ function Register() {
             name="sex" // Ensure this matches the name used in your backend and store
             rules={[
               { required: true, message: 'Please input your sex!' }, // Updated message
-              // Removed incorrect type validation
             ]}
           >
             {/* <Input /> */}
@@ -485,7 +484,12 @@ function Register() {
             <Input />
           </Form.Item>
           {/* File Upload */}
-          <Form.Item label="Upload Headshot">
+          <Form.Item
+            label="Upload Headshot"
+            rules={[
+              { required: true, message: 'Please input your sex!' }, // Updated message
+            ]}
+          >
             <Upload
               accept="image/*"
               beforeUpload={() => false}

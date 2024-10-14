@@ -56,6 +56,7 @@ function Leaderboard() {
             Object.keys(users).map((id, index) => {
               const user = users[id];
               const imgUrl = `https://drive.google.com/thumbnail?id=${user.photoID}`;
+              console.log('here is the photo id: ', user.photoID);
               return (
                 <li key={id} className="leaderboard-item">
                   <div className="rank-box">
