@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import {
   Form, Input, Button, message,
 } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import useStore from '../store/index'; // Import the zustand store
 import NavBar from '../components/NavBar';
 import '../style/Actions.css';
@@ -11,6 +12,7 @@ function Actions() {
   const {
     user, getProfile, isLoading, error, setError,
   } = useStore();
+  const navigate = useNavigate();
 
   // Endorsement form handler (Form 1)
   const handleEndorse = async (values) => {
@@ -35,13 +37,12 @@ function Actions() {
       const result = await refer(email1, email2);
       console.log(result);
       if (result.error) {
-        message.error('Ensure you have provided two valid Dartmouth email addresses');
-        message.error('These users might have already matched or rejected one another.');
+        message.error('Ensure you have provided two valid Dartmouth email addresses. Note that these users might have already matched or rejected one another.');
       } else {
         message.success('Successful referral!');
       }
     } catch {
-      message.error('Ensure you have provided two valid Dartmouth email addresses');
+      message.error('Ensure you have provided two valid Dartmouth email addresses. Note that these users might have already matched or rejected one another.');
       setError('Referral failed.');
     }
   };
@@ -65,6 +66,12 @@ function Actions() {
   useEffect(() => {
     getProfile();
   }, [getProfile]);
+
+  useEffect(() => {
+    if (error || !user) {
+      navigate('/login');
+    }
+  }, [error, user, navigate]);
 
   if (isLoading) {
     return <div />;

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Img } from 'react-image';
+import { useNavigate } from 'react-router-dom';
 import useStore from '../store/index';
 import NavBar from '../components/NavBar';
 import '../style/UserProfileStyle.css';
@@ -8,10 +9,17 @@ function UserProfile() {
   const {
     user, getProfile, isLoading, error,
   } = useStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getProfile();
   }, [getProfile]);
+
+  useEffect(() => {
+    if (!isLoading && error) {
+      navigate('/login');
+    }
+  }, [isLoading, error, navigate]);
 
   if (isLoading) {
     return <div />;
@@ -22,6 +30,7 @@ function UserProfile() {
   }
 
   if (!user) {
+    navigate('/login');
     return <div>No user data available.</div>;
   }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from 'antd';
 import { useSwipeable } from 'react-swipeable';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import useStore from '../store/index'; // Import the zustand store
 import '../style/RecruitingStyle.css'; // Make sure this CSS file is still included
@@ -111,6 +112,7 @@ function Recruiting() {
   const [cards, setCards] = useState([]);
   const { setError, isLoading, setLoading } = useStore();
   const serverPath = 'http://127.0.0.1:5000';
+  const navigate = useNavigate();
   const fetchUsers = async () => {
     setLoading(true);
 
@@ -148,9 +150,11 @@ function Recruiting() {
         setCards(transformedData);
         console.log('Transformed data:', transformedData);
       } else {
-        throw new Error(data.error || 'Failed to fetch users');
+        throw new Error(data.error || '');
       }
     } catch (error) {
+      console.log('caught');
+      navigate('/login');
       setError(error.message);
     } finally {
       setLoading(false);

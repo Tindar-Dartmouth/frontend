@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Form, Input, Button, message as antdMessage,
 } from 'antd';
@@ -11,6 +11,7 @@ function NDA() {
   const location = useLocation();
   const { selfUserID, bUserID } = location.state || {};
   const { sendMessage } = useStore();
+  const navigate = useNavigate();
   const {
     getMessages,
     isLoading,
@@ -42,19 +43,24 @@ function NDA() {
           const result = await getMessages(selfUserID, bUserID); // Fetch messages
           setMessages(result); // Assuming `getMessages` returns the list of tuples
         } catch (err) {
-          console.error('Failed to fetch messages', err);
+          setError('Failed to fetch messages', err);
         }
       };
       fetchData();
+    } else {
+      setError('Failed to fetch information.');
     }
-  }, [selfUserID, bUserID, getMessages]);
+  }, [selfUserID, bUserID, getMessages, setError]);
+
+  useEffect(() => {
+    if (error) {
+      console.log('Error detected, redirecting...');
+      navigate('/login');
+    }
+  }, [error, navigate]);
 
   if (isLoading) {
     return <div />;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
   }
 
   return (

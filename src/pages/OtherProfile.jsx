@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useStore from '../store/index';
 import NavBar from '../components/NavBar';
 import '../style/OtherUserProfileStyle.css';
@@ -13,13 +13,15 @@ function OtherProfile() {
     isLoading,
     error,
   } = useStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (userID) {
       getOtherProfile(userID);
+    } else {
+      navigate('/login');
     }
   }, [userID, getOtherProfile]);
-
   if (isLoading) {
     return <div />;
   }

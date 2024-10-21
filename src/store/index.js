@@ -328,7 +328,7 @@ const useStore = create(devtools(immer((set) => ({
 
         return data; // Return the response data to handle it in the frontend
       } else {
-        throw new Error(data.error || 'Failed to fetch profile');
+        throw new Error(data.error || '');
       }
     } catch (error) {
       set((draft) => {
