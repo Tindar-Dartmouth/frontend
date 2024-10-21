@@ -59,30 +59,116 @@ function Connections() {
     fetchUsers();
   }, []);
 
+  // const renderReferralMatches = () => {
+  //   if (users.referrals.length === 0) {
+  //     return <h2><strong><div className="black">Sorry, no referrals yet.</div></strong></h2>;
+  //   }
+
+  //   return users.referrals.map(([key, referral]) => (
+  //     <div key={key}>
+  //       <div className="connect-box">
+  //         <li>
+  //           <div className="inner-box">
+  //             <img
+  //               alt=""
+  //               src={`https://drive.google.com/thumbnail?id=${referral.photoID}`}
+  //             />
+  //           </div>
+  //           <p>
+  //             <strong>
+  //               {referral.name} &apos;{String(referral.classYear).slice(-2)}
+  //             </strong>
+  //             <br />
+  //             Referred by {key}
+  //           </p>
+  //           <p>
+  //             {referral.major} & {referral.minor}, {referral.height}
+  //           </p>
+  //           <p>
+  //             {parseFloat(referral.tindarIndex).toFixed(2)}
+  //           </p>
+  //           <br />
+  //           <div className="button-cont">
+  //             <button
+  //               type="submit"
+  //               className="connect-button"
+  //               onClick={() => goToUserProfile(referral.userID)}
+  //             >
+  //               Resume
+  //             </button>
+  //             <button
+  //               type="submit"
+  //               className="connect-button"
+  //               onClick={() => goToNDA(referral.userID)}
+  //             >
+  //               Non-Disclosure Agreement
+  //             </button>
+  //           </div>
+  //         </li>
+  //       </div>
+  //       <br />
+  //     </div>
+  //   ));
+  // };
   const renderReferralMatches = () => {
     if (users.referrals.length === 0) {
-      return <h2><strong><div className="black">Sorry, no referrals yet.</div></strong></h2>;
+      return (
+        <h2>
+          <strong>
+            <div className="black">Sorry, no referrals yet.</div>
+          </strong>
+        </h2>
+      );
     }
+    console.log('referal as define: ', users.referrals);
 
-    return users.referrals.map(([key, referral]) => (
-      <div>
-        <div className="connect-box">
-          <li key={key}>
-            <div className="inner=box">
-              <img alt="" src="https://drive.google.com/thumbnail?id=1PMcGxuCNxdPXjIpGNu1dmRIftzv0l9OL" />
-            </div>
-            <h3>This match was referred by {key}</h3>
-            <p><strong>Name:</strong> {referral.name}</p>
-            <p><strong>Class Year:</strong> {referral.classYear}</p>
-            <p><strong>Major:</strong> {referral.major}</p>
-            <p><strong>Minor:</strong> {referral.minor}</p>
-            <p><strong>Tindar Index:</strong> {referral.tindarIndex}</p>
-            <button type="submit" onClick={() => goToUserProfile(referral.userID)}>Go to {referral.name}s full profile</button>
-            <button type="submit" onClick={() => goToNDA(referral.userID)}>Go to NDA between with {referral.name}</button>
-          </li>
+    return users.referrals.map(([name, referralArray]) => {
+      const [referralName, referralData] = referralArray;
+
+      return (
+        <div key={name}>
+          <div className="connect-box">
+            <li>
+              <div className="inner-box">
+                <img
+                  alt=""
+                  src={`https://drive.google.com/thumbnail?id=${referralData.photoID}`}
+                />
+              </div>
+              <p>
+                <strong>
+                  {referralData.name} &apos;{String(referralData.classYear).slice(-2)}
+                </strong>
+                <br />
+                <em>Referred by {referralName}</em>
+              </p>
+              <p>
+                {referralData.major} & {referralData.minor}, {referralData.height}
+              </p>
+              <p>{parseFloat(referralData.tindarIndex).toFixed(2)}</p>
+              <br />
+              <div className="button-cont">
+                <button
+                  type="submit"
+                  className="connect-button"
+                  onClick={() => goToUserProfile(referralData.userID)}
+                >
+                  Resume
+                </button>
+                <button
+                  type="submit"
+                  className="connect-button"
+                  onClick={() => goToNDA(referralData.userID)}
+                >
+                  Non-Disclosure Agreement
+                </button>
+              </div>
+            </li>
+          </div>
+          <br />
         </div>
-      </div>
-    ));
+      );
+    });
   };
 
   console.log('users');
